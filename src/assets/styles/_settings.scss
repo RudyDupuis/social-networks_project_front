@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "font-1";
+  src: url(../fonts/Ubuntu-Medium.ttf);
+}
+
+$font-1: "font-1", sans-serif;
+
+$background-1: #f0eee9;
+$background-2: #e1e0df;
+$main: #344d59;
+$secondary: #e09e50;
+
 * {
   margin: 0;
   padding: 0;
@@ -10,13 +22,77 @@
 
 a,
 a:visited {
-  color: black;
+  color: $main;
 }
 a:hover {
-  color: gray;
+  color: $main;
 }
 
 body {
-  background: whitesmoke;
-  color: gray;
+  background: $background-1;
+  min-height: 100vh;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: $font-1;
+  color: $main;
+
+  &::placeholder {
+    color: $main;
+  }
+}
+
+/*********** Components ***********/
+
+.btn-1,
+.btn-2 {
+  width: 100%;
+  height: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    background: $main;
+    color: $background-1;
+  }
+
+  &:active {
+    transform: scaleX(0.9);
+  }
+}
+
+.btn-1 {
+  background: $background-2;
+}
+.btn-2 {
+  border: 2px solid $main;
+}
+
+.input-1 {
+  width: 100%;
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 10px;
+    background: $background-2;
+    border: 2px solid $main;
+    border-radius: 5px;
+
+    &:focus {
+      background: transparent;
+    }
+  }
+
+  i {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
 }

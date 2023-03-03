@@ -1,0 +1,52 @@
+.register {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  a,
+  label {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  strong:hover {
+    color: $secondary;
+  }
+
+  img {
+    margin-bottom: 40px;
+  }
+
+  div {
+    margin-bottom: 15px;
+  }
+
+  .cgu {
+    align-self: start;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  label {
+    margin-left: 5px;
+  }
+
+  .btn-1 {
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 450px) {
+    width: auto;
+  }
+}
