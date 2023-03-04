@@ -1,11 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useRef } from "react";
 
 const Header = () => {
+  const headerMenuRef = useRef<HTMLDivElement>(null);
+
+  const handleMenuOpen = () => {
+    if (headerMenuRef.current) {
+      headerMenuRef.current.style.transform = "translateX(0)";
+    }
+  };
+
+  const handleMenuClose = () => {
+    if (headerMenuRef.current) {
+      headerMenuRef.current.style.transform = "translateX(100%)";
+    }
+  };
+
   return (
     <header>
-      <div className="container container__global">
+      <div className="header">
         <Link href="/accueil">
           <Image
             src="/assets/logo.png"
@@ -14,17 +28,20 @@ const Header = () => {
             height={133 / 4}
           />
         </Link>
-        <div className="container container__secondary">
-          <div className="menu">
-            <i className="fa-solid fa-bars"></i>
-            <i className="fa-solid fa-xmark"></i>
-          </div>
+
+        <i className="fa-solid fa-bars" onClick={handleMenuOpen}></i>
+
+        <div className="header__menu" ref={headerMenuRef}>
+          <i className="fa-solid fa-xmark" onClick={handleMenuClose}></i>
+
           <div className="input-1">
             <input type="text" placeholder="Rechercher" />
             <i className="fa-solid fa-magnifying-glass"></i>
           </div>
-          <div className="icon">
+
+          <div className="header__menu--icon">
             <i className="fa-solid fa-bell"></i>
+
             <Link href="/compte">
               <i className="fa-solid fa-user"></i>
             </Link>

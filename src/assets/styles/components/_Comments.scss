@@ -1,0 +1,21 @@
+.comments {
+  border-radius: 20px;
+  margin: 10px 0;
+
+  .interaction__message {
+    display: none;
+  }
+
+  .posts__content--message {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 450px) {
+    .posts__content--profil {
+      font-size: 0.8rem;
+    }
+    .posts-date {
+      font-size: 0.5rem;
+    }
+  }
+}

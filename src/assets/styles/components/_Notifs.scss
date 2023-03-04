@@ -1,0 +1,23 @@
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+
+  div {
+    margin: 0 20px;
+    font-size: 0.9rem;
+  }
+
+  &__date {
+    font-size: 0.7rem;
+  }
+
+  i {
+    cursor: pointer;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+}

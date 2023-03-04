@@ -1,0 +1,108 @@
+.account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__profil {
+    width: 80%;
+    margin: 40px 0;
+    background: $background-2;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+
+    @media (max-width: 400px) {
+      flex-direction: column;
+    }
+
+    &--infos {
+      display: flex;
+      align-items: center;
+
+      div {
+        margin-left: 20px;
+
+        .profil-pseudo {
+          font-weight: bold;
+          font-size: 1.2rem;
+
+          @media (max-width: 500px) {
+            font-size: 1rem;
+          }
+        }
+
+        .profil-mail {
+          @media (max-width: 500px) {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+
+    i {
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1.5rem;
+
+      @media (max-width: 500px) {
+        font-size: 1rem;
+      }
+
+      @media (max-width: 400px) {
+        align-self: flex-end;
+      }
+
+      &:hover {
+        color: $secondary;
+      }
+
+      &:active {
+        transform: translateX(-10px);
+      }
+    }
+  }
+
+  &__buttons {
+    width: 400px;
+
+    @media (max-width: 430px) {
+      width: 90%;
+    }
+
+    &--button {
+      background: $background-2;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 15px 0;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        background: $main;
+        color: $background-2;
+      }
+
+      &:active {
+        transform: translateX(-20px);
+      }
+
+      div {
+        display: flex;
+      }
+
+      p {
+        margin-left: 10px;
+      }
+    }
+
+    .btn-2 {
+      margin-top: 20px;
+    }
+  }
+}

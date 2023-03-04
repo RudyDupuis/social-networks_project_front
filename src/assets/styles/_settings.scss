@@ -31,6 +31,7 @@ a:hover {
 body {
   background: $background-1;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 body,
@@ -94,5 +95,46 @@ button {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+  }
+}
+
+.message {
+  width: 100%;
+  position: relative;
+
+  textarea {
+    width: 100%;
+    resize: none;
+    min-height: 100px;
+    padding: 20px;
+    background: $background-2;
+    border: 2px solid $background-2;
+
+    &:focus {
+      background: $background-1;
+    }
+  }
+
+  button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: $main;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background: $secondary;
+    }
+
+    &:active {
+      transform: scaleX(0.9);
+    }
+
+    i {
+      color: $background-1;
+      padding: 5px 15px;
+    }
   }
 }

@@ -28,7 +28,7 @@ const inscription = () => {
           <input type="password" placeholder="Confirmer le mot de passe" />
           <i className="fa-solid fa-lock"></i>
         </div>
-        <div className="cgu">
+        <div className="register__cgu">
           <input type="checkbox" id="CGU" />
           <label htmlFor="CGU">
             Accepter les{" "}
