@@ -64,11 +64,17 @@
     }
   }
 
+  &__container {
+    display: flex;
+  }
+
   &__buttons {
     width: 400px;
+    margin-right: 50px;
 
     @media (max-width: 430px) {
       width: 90%;
+      margin: 0;
     }
 
     &--button {

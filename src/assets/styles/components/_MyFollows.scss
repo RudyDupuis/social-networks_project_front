@@ -1,0 +1,32 @@
+.my-follows {
+  width: 40vw;
+  max-width: 450px;
+
+  &__profil {
+    background: $background-2;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 20px 0;
+
+    div {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin-left: 20px;
+      }
+    }
+
+    &:hover {
+      background: $secondary;
+    }
+
+    &:active {
+      transform: translateX(-10px);
+    }
+  }
+}
