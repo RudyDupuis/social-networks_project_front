@@ -1,0 +1,81 @@
+.profil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__infos {
+    width: 80%;
+    margin: 40px 0;
+    background: $background-2;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+
+    @media (max-width: 650px) {
+      flex-direction: column;
+    }
+
+    @media (max-width: 450px) {
+      width: 95%;
+    }
+
+    &--content {
+      display: flex;
+      align-items: center;
+
+      div {
+        margin-left: 20px;
+
+        .profil-pseudo {
+          font-weight: bold;
+          font-size: 1.2rem;
+
+          @media (max-width: 500px) {
+            font-size: 1rem;
+          }
+        }
+
+        .profil-mail {
+          @media (max-width: 500px) {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+
+    &--buttons {
+      margin-bottom: 10px;
+
+      @media (max-width: 650px) {
+        display: flex;
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      @media (max-width: 400px) {
+        flex-direction: column;
+      }
+
+      button {
+        margin: 10px 0;
+
+        @media (max-width: 650px) {
+          margin: 0 10px;
+        }
+        @media (max-width: 400px) {
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+
+  &__posts {
+    width: 80%;
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
+}

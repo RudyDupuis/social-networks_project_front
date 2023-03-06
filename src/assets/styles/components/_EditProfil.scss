@@ -1,6 +1,15 @@
 .edit-profil {
-  width: 40vw;
-  max-width: 450px;
+  width: 450px;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+
+  .fa-camera {
+    @media (max-width: 335px) {
+      display: none;
+    }
+  }
 
   h1 {
     margin-bottom: 40px;

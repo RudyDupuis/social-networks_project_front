@@ -13,6 +13,10 @@
     align-items: center;
     border-radius: 10px;
 
+    @media (max-width: 450px) {
+      width: 95%;
+    }
+
     @media (max-width: 400px) {
       flex-direction: column;
     }
@@ -70,11 +74,9 @@
 
   &__buttons {
     width: 400px;
-    margin-right: 50px;
 
     @media (max-width: 430px) {
-      width: 90%;
-      margin: 0;
+      width: 90vw;
     }
 
     &--button {
@@ -109,6 +111,53 @@
 
     .btn-2 {
       margin-top: 20px;
+    }
+  }
+
+  &__section {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 50px;
+
+    .fa-circle-xmark:first-child {
+      display: none;
+    }
+
+    @media (max-width: 1000px) {
+      display: none;
+      margin: 0;
+    }
+
+    &--open {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      z-index: 6;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 100vh;
+      background: $background-1;
+      padding: 50px;
+
+      @media (max-width: 440px) {
+        padding: 50px 20px;
+      }
+
+      .fa-circle-xmark:first-child {
+        display: inline;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.6rem;
+        cursor: pointer;
+
+        &:hover {
+          color: $secondary;
+        }
+      }
     }
   }
 }

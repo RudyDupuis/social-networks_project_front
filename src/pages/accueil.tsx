@@ -23,6 +23,14 @@ const accueil = () => {
           </div>
         </section>
         <section className="home__notifs">
+          <i
+            className="fa-solid fa-circle-xmark"
+            onClick={() =>
+              (
+                document.querySelector(".home__notifs") as HTMLElement
+              ).classList.remove("home__notifs--open")
+            }
+          ></i>
           <h2>
             <i className="fa-solid fa-bell"></i> Mes notifications
           </h2>
