@@ -15,17 +15,4 @@
       margin: 0 20px 0 0;
     }
   }
-
-  i {
-    cursor: pointer;
-    transition: 0.2s;
-
-    &:hover {
-      color: $secondary;
-    }
-
-    &:active {
-      transform: translateX(-10px);
-    }
-  }
 }

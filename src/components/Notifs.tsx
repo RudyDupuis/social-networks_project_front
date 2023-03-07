@@ -17,7 +17,7 @@ const Notifs = () => {
         </p>
         <p className="notification__date">23 Fev à 09:05</p>
       </div>
-      <i className="fa-solid fa-circle-xmark"></i>
+      <i className="fa-solid fa-circle-xmark btn-anim"></i>
     </div>
   );
 };

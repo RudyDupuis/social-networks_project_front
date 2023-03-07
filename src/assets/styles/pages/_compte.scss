@@ -46,8 +46,6 @@
     }
 
     i {
-      cursor: pointer;
-      transition: 0.2s;
       font-size: 1.5rem;
 
       @media (max-width: 500px) {
@@ -56,14 +54,6 @@
 
       @media (max-width: 400px) {
         align-self: flex-end;
-      }
-
-      &:hover {
-        color: $secondary;
-      }
-
-      &:active {
-        transform: translateX(-10px);
       }
     }
   }
@@ -88,16 +78,10 @@
       padding: 10px;
       border-radius: 5px;
       margin: 15px 0;
-      cursor: pointer;
-      transition: 0.2s;
 
       &:hover {
         background: $main;
         color: $background-2;
-      }
-
-      &:active {
-        transform: translateX(-20px);
       }
 
       div {

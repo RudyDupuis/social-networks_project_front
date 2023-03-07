@@ -5,60 +5,92 @@ header {
   align-items: center;
   justify-content: center;
 
+  @media (max-width: 650px) {
+    height: 140px;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 90%;
 
-    &__menu {
+    &__right {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 40%;
-      z-index: 5;
+      width: 50%;
 
-      @media (max-width: 800px) {
-        width: 60%;
+      @media (max-width: 650px) {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+      }
+
+      &--search {
+        width: 20vw;
+        min-width: 200px;
+        position: relative;
+
+        @media (max-width: 650px) {
+          position: absolute;
+          z-index: 5;
+          top: 80px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .results-container {
+          position: absolute;
+          width: 100%;
+          z-index: 5;
+
+          &__result {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            background: $background-1;
+
+            div {
+              display: flex;
+              align-items: center;
+
+              p {
+                margin-left: 10px;
+              }
+            }
+
+            &:hover {
+              background: $secondary;
+            }
+
+            &:active {
+              transform: translateX(-10px);
+            }
+          }
+        }
       }
 
       &--icon {
-        width: 20%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+
+        .fa-solid:hover {
+          color: $background-1;
+          cursor: pointer;
+        }
+
+        .fa-bell {
+          display: none;
+
+          @media (max-width: 1000px) {
+            display: inline;
+            margin-right: 20px;
+          }
+        }
       }
     }
-  }
-
-  .input-1 {
-    width: 20vw;
-    min-width: 200px;
-  }
-
-  .fa-bars,
-  .fa-xmark {
-    font-size: 3rem;
-    display: none;
-  }
-
-  .fa-bars {
-    @media (max-width: 600px) {
-      display: inline;
-    }
-  }
-
-  .fa-bell {
-    display: none;
-
-    @media (max-width: 1000px) {
-      display: inline;
-    }
-  }
-
-  .fa-solid:not(.fa-magnifying-glass):hover {
-    color: $background-1;
-    cursor: pointer;
   }
 }

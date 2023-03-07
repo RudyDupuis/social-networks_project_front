@@ -4,6 +4,13 @@ import Posts from "@/components/Posts";
 import React from "react";
 
 const accueil = () => {
+  const closeNotifs = () => {
+    (document.querySelector(".home__notifs") as HTMLElement).classList.remove(
+      "home__notifs--open"
+    );
+    (document.querySelector(".home__posts") as HTMLElement).style.display =
+      "block";
+  };
   return (
     <main>
       <Header />
@@ -23,14 +30,7 @@ const accueil = () => {
           </div>
         </section>
         <section className="home__notifs">
-          <i
-            className="fa-solid fa-circle-xmark"
-            onClick={() =>
-              (
-                document.querySelector(".home__notifs") as HTMLElement
-              ).classList.remove("home__notifs--open")
-            }
-          ></i>
+          <i className="fa-solid fa-circle-xmark" onClick={closeNotifs}></i>
           <h2>
             <i className="fa-solid fa-bell"></i> Mes notifications
           </h2>

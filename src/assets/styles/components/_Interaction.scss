@@ -23,16 +23,7 @@
     margin-left: 13px;
   }
 
-  i {
-    cursor: pointer;
-    transition: 0.2s;
-
-    &:hover {
-      color: $secondary;
-    }
-
-    &:active {
-      transform: translateY(-10px);
-    }
+  i:active {
+    transform: translateY(-10px);
   }
 }

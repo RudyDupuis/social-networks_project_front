@@ -1,48 +1,82 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 
 const Header = () => {
   const router = useRouter();
+  const [searchFocused, setSearchFocused] = useState(false);
+
+  const openNotifs = () => {
+    (document.querySelector(".home__notifs") as HTMLElement).classList.add(
+      "home__notifs--open"
+    );
+    (document.querySelector(".home__posts") as HTMLElement).style.display =
+      "none";
+  };
 
   return (
     <header>
       <div className="header">
-        {router.pathname !== "/accueil" && (
-          <Link href="/accueil">
-            <Image
-              src="/assets/logo.png"
-              alt="logo"
-              width={521 / 4}
-              height={133 / 4}
-            />
-          </Link>
-        )}
+        <Link href="/accueil">
+          <Image
+            src="/assets/logo.png"
+            alt="logo"
+            width={521 / 4}
+            height={133 / 4}
+          />
+        </Link>
 
-        <div className="header__menu">
-          <div className="input-1">
-            <input type="text" placeholder="Rechercher" />
-            <i className="fa-solid fa-magnifying-glass"></i>
+        <div className="header__right">
+          <div className="header__right--search">
+            <div className="input-1">
+              <input
+                type="text"
+                placeholder="Rechercher"
+                onFocus={() => setSearchFocused(true)}
+                onBlur={() => setSearchFocused(false)}
+              />
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div
+              className="results-container"
+              style={{ display: searchFocused ? "block" : "none" }}
+            >
+              <div className="results-container__result">
+                <div>
+                  <Image
+                    src="/assets/profil-picto.png"
+                    alt="logo"
+                    width={96 / 4}
+                    height={119 / 4}
+                  />
+                  <p>John Doe</p>
+                </div>
+                <i className="fa-solid fa-angle-right"></i>
+              </div>
+              <div className="results-container__result">
+                <div>
+                  <Image
+                    src="/assets/profil-picto.png"
+                    alt="logo"
+                    width={96 / 4}
+                    height={119 / 4}
+                  />
+                  <p>John Doe</p>
+                </div>
+                <i className="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
           </div>
 
-          <div className="header__menu--icon">
+          <div className="header__right--icon">
             {router.pathname === "/accueil" && (
-              <i
-                className="fa-solid fa-bell"
-                onClick={() =>
-                  (
-                    document.querySelector(".home__notifs") as HTMLElement
-                  ).classList.add("home__notifs--open")
-                }
-              ></i>
+              <i className="fa-solid fa-bell" onClick={openNotifs}></i>
             )}
 
-            {router.pathname !== "/compte" && (
-              <Link href="/compte">
-                <i className="fa-solid fa-user"></i>
-              </Link>
-            )}
+            <Link href="/compte">
+              <i className="fa-solid fa-user"></i>
+            </Link>
           </div>
         </div>
       </div>

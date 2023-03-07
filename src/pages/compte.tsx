@@ -37,21 +37,21 @@ const Compte = () => {
             </div>
           </div>
           <i
-            className="fa-solid fa-pen"
+            className="fa-solid fa-pen btn-anim"
             onClick={() => handleSectionChange("EditProfil")}
           ></i>
         </div>
 
         <div className="account__container">
           <div className="account__buttons">
-            <button className="account__buttons--button">
+            <button className="account__buttons--button btn-anim">
               <div>
                 <i className="fa-solid fa-sun"></i>
                 <p>Mode Clair</p>
               </div>
             </button>
             <button
-              className="account__buttons--button"
+              className="account__buttons--button btn-anim"
               onClick={() => handleSectionChange("MyFollows")}
             >
               <div>
@@ -61,7 +61,7 @@ const Compte = () => {
               <i className="fa-solid fa-angle-right"></i>
             </button>
             <button
-              className="account__buttons--button"
+              className="account__buttons--button btn-anim"
               onClick={() => handleSectionChange("MyPosts")}
             >
               <div>
@@ -71,7 +71,7 @@ const Compte = () => {
               <i className="fa-solid fa-angle-right"></i>
             </button>
             <button
-              className="account__buttons--button"
+              className="account__buttons--button btn-anim"
               onClick={() => handleSectionChange("AdminPage")}
             >
               <div>
@@ -81,7 +81,7 @@ const Compte = () => {
               <i className="fa-solid fa-angle-right"></i>
             </button>
             <button
-              className="account__buttons--button"
+              className="account__buttons--button btn-anim"
               onClick={() => handleSectionChange("CGU")}
             >
               <div>

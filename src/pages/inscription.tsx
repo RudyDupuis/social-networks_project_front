@@ -1,3 +1,4 @@
+import CGU from "@/components/CGU";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -28,13 +29,19 @@ const inscription = () => {
           <input type="password" placeholder="Confirmer le mot de passe" />
           <i className="fa-solid fa-lock"></i>
         </div>
-        <div className="register__cgu">
+        <div className="register__checkbox">
           <input type="checkbox" id="CGU" />
           <label htmlFor="CGU">
             Accepter les{" "}
-            <Link href="/cgu">
-              <strong>CGU</strong>
-            </Link>
+            <strong
+              onClick={() =>
+                ((
+                  document.querySelector(".register__cgu") as HTMLElement
+                ).style.display = "block")
+              }
+            >
+              CGU
+            </strong>
           </label>
         </div>
         <input type="submit" value="Inscription" className="btn-1" />
@@ -42,6 +49,17 @@ const inscription = () => {
           Vous possédez déjà un compte ? <strong>Connexion</strong>
         </Link>
       </form>
+      <div className="register__cgu">
+        <CGU />
+        <i
+          className="fa-solid fa-circle-xmark"
+          onClick={() =>
+            ((
+              document.querySelector(".register__cgu") as HTMLElement
+            ).style.display = "none")
+          }
+        ></i>
+      </div>
     </main>
   );
 };
