@@ -1,18 +1,35 @@
 import CGU from "@/components/CGU";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const inscription = () => {
+  const [currentTheme, setCurrentTheme] = useState("");
+
+  useEffect(() => {
+    setCurrentTheme(
+      localStorage.getItem("theme") ? localStorage.theme : "light"
+    );
+  }, []);
+
   return (
     <main className="register-container">
       <form action="" className="register">
-        <Image
-          src="/assets/logo.png"
-          alt="logo"
-          width={521 / 2.7}
-          height={133 / 2.7}
-        />
+        {currentTheme === "dark" ? (
+          <Image
+            src="/assets/logo-dark.png"
+            alt="logo"
+            width={521 / 2.7}
+            height={133 / 2.7}
+          />
+        ) : (
+          <Image
+            src="/assets/logo.png"
+            alt="logo"
+            width={521 / 2.7}
+            height={133 / 2.7}
+          />
+        )}
         <div className="input-1">
           <input type="text" placeholder="Pseudo" />
           <i className="fa-solid fa-user"></i>

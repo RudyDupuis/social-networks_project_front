@@ -33,6 +33,10 @@ header {
         min-width: 200px;
         position: relative;
 
+        input {
+          background: transparent;
+        }
+
         @media (max-width: 650px) {
           position: absolute;
           z-index: 5;
@@ -45,6 +49,7 @@ header {
           position: absolute;
           width: 100%;
           z-index: 5;
+          border: 2px solid $main;
 
           &__result {
             padding: 10px;
@@ -52,7 +57,7 @@ header {
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
-            background: $background-1;
+            background: $background-2;
 
             div {
               display: flex;

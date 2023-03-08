@@ -5,18 +5,64 @@ import Header from "@/components/Header";
 import MyPosts from "@/components/MyPosts";
 import MyFollows from "@/components/MyFollows";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Compte = () => {
+  //Change the content of the section when a button is clicked
   const [section, setSection] = useState<string>("EditProfil");
 
   const handleSectionChange = (newSection: string) => {
+    //create a modal if the screen size is small
     if (window.innerWidth < 1000) {
       (
         document.querySelector(".account__section") as HTMLElement
       ).classList.add("account__section--open");
     }
     setSection(newSection);
+  };
+
+  //change theme colors when button is clicked
+
+  const LIGHT_THEME = {
+    background1: "#f0eee9",
+    background2: "#e1e0df",
+    main: "#344d59",
+  };
+
+  const DARK_THEME = {
+    background1: "#344d59",
+    background2: "#486877",
+    main: "#f0eee9",
+  };
+
+  const [currentTheme, setCurrentTheme] = useState("");
+
+  useEffect(() => {
+    setCurrentTheme(
+      localStorage.getItem("theme") ? localStorage.theme : "light"
+    );
+  }, []);
+
+  const handleThemeChange = () => {
+    const theme = currentTheme === "light" ? DARK_THEME : LIGHT_THEME;
+
+    document.documentElement.style.setProperty(
+      "--background-1",
+      theme.background1
+    );
+    document.documentElement.style.setProperty(
+      "--background-2",
+      theme.background2
+    );
+    document.documentElement.style.setProperty("--main", theme.main);
+
+    if (localStorage.getItem("theme") && localStorage.theme === "dark") {
+      setCurrentTheme("light");
+      localStorage.theme = "light";
+    } else {
+      setCurrentTheme("dark");
+      localStorage.setItem("theme", "dark");
+    }
   };
 
   return (
@@ -44,11 +90,19 @@ const Compte = () => {
 
         <div className="account__container">
           <div className="account__buttons">
-            <button className="account__buttons--button btn-anim">
-              <div>
-                <i className="fa-solid fa-sun"></i>
-                <p>Mode Clair</p>
-              </div>
+            <button
+              className="account__buttons--button btn-anim"
+              onClick={handleThemeChange}
+            >
+              {currentTheme === "dark" ? (
+                <div>
+                  <i className="fa-solid fa-moon"></i> <p>Mode Sombre</p>
+                </div>
+              ) : (
+                <div>
+                  <i className="fa-solid fa-sun"></i> <p>Mode Clair</p>
+                </div>
+              )}
             </button>
             <button
               className="account__buttons--button btn-anim"
