@@ -20,31 +20,35 @@ const inscription = () => {
   ) => {
     const mailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[\S]{8,}$/;
+    let instructionsList = [];
 
     if (pseudo.length < 5) {
-      return setInstructions("Le pseudo est trop court.");
+      instructionsList.push("Le pseudo est trop court.");
     }
 
     if (!mailRegex.test(mail)) {
-      return setInstructions("Le mail n'est pas correct.");
+      instructionsList.push("Le mail n'est pas correct.");
     }
 
     if (!passwordRegex.test(password)) {
-      return setInstructions(
+      instructionsList.push(
         "Le mot de passe doit contenir 8 caractères dont une majuscule et un chiffre."
       );
     }
 
     if (password !== confPassword) {
-      return setInstructions("Les deux mots de passe ne sont pas identiques.");
+      instructionsList.push("Les deux mots de passe ne sont pas identiques.");
     }
 
-    setInstructions("");
-    return {
-      pseudo,
-      mail,
-      password,
-    };
+    setInstructions(instructionsList.join("\n\n"));
+
+    if (instructionsList.length === 0) {
+      return {
+        pseudo,
+        mail,
+        password,
+      };
+    }
   };
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
