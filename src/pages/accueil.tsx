@@ -4,6 +4,7 @@ import Posts from "@/components/Posts";
 import React from "react";
 
 const accueil = () => {
+  //Close the notification modal and redisplay the posts section
   const closeNotifs = () => {
     (document.querySelector(".home__notifs") as HTMLElement).classList.remove(
       "home__notifs--open"
@@ -11,6 +12,7 @@ const accueil = () => {
     (document.querySelector(".home__posts") as HTMLElement).style.display =
       "block";
   };
+
   return (
     <main>
       <Header />

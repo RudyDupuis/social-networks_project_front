@@ -1,40 +1,48 @@
-import Image from "next/image";
+import LogoLoginRegister from "@/components/indexInscription/LogoLoginRegister";
+import axios from "axios";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const index = () => {
-  const [currentTheme, setCurrentTheme] = useState("");
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    setCurrentTheme(
-      localStorage.getItem("theme") ? localStorage.theme : "light"
-    );
-  }, []);
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const data = {
+      identifier,
+      password,
+    };
+
+    try {
+      const response = await axios.post("", data);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <main className="login-container">
-      <form action="" className="login">
-        {currentTheme === "dark" ? (
-          <Image
-            src="/assets/logo-dark.png"
-            alt="logo"
-            width={521 / 2.7}
-            height={133 / 2.7}
-          />
-        ) : (
-          <Image
-            src="/assets/logo.png"
-            alt="logo"
-            width={521 / 2.7}
-            height={133 / 2.7}
-          />
-        )}
+      <form onSubmit={handleLogin} className="login">
+        <LogoLoginRegister />
         <div className="input-1">
-          <input type="text" placeholder="Pseudo ou mail" />
+          <input
+            type="text"
+            placeholder="Pseudo ou mail"
+            required
+            onChange={(e) => setIdentifier(e.target.value)}
+          />
           <i className="fa-solid fa-user"></i>
         </div>
         <div className="input-1">
-          <input type="password" placeholder="Mot de passe" />
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <i className="fa-solid fa-lock"></i>
         </div>
         <input type="submit" value="Connexion" className="btn-1" />

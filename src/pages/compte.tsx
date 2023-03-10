@@ -1,68 +1,37 @@
-import EditProfil from "@/components/EditProfil";
-import AdminPage from "@/components/AdminPage";
-import CGU from "@/components/CGU";
-import Header from "@/components/Header";
-import MyPosts from "@/components/MyPosts";
-import MyFollows from "@/components/MyFollows";
+import React, { useState } from "react";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+
+import Header from "@/components/Header";
+import DarkModeButton from "@/components/compte/DarkModeButton";
+
+import EditProfil from "@/components/compte/EditProfil";
+import AdminPage from "@/components/compte/AdminPage";
+import CGU from "@/components/compte/CGU";
+import MyPosts from "@/components/compte/MyPosts";
+import MyFollows from "@/components/compte/MyFollows";
 
 const Compte = () => {
-  //Change the content of the section when a button is clicked
+  //List of configuration buttons for the user account
+  const settingsButtons = [
+    ["Mes suivis", "fa-user"],
+    ["Mes posts", "fa-book"],
+    ["Page Admin", "fa-scale-balanced"],
+    ["CGU", "fa-circle-info"],
+  ];
+
+  //Current state of the section displayed in the account page
   const [section, setSection] = useState<string>("EditProfil");
 
+  //Function to change the displayed section
   const handleSectionChange = (newSection: string) => {
-    //create a modal if the screen size is small
-    if (window.innerWidth < 1000) {
+    //If the window width is less than 1000, add a class to create a modal to the section
+    window.innerWidth < 1000 &&
       (
         document.querySelector(".account__section") as HTMLElement
       ).classList.add("account__section--open");
-    }
+
+    //Define the new section
     setSection(newSection);
-  };
-
-  //change theme colors when button is clicked
-
-  const LIGHT_THEME = {
-    background1: "#f0eee9",
-    background2: "#e1e0df",
-    main: "#344d59",
-  };
-
-  const DARK_THEME = {
-    background1: "#344d59",
-    background2: "#486877",
-    main: "#f0eee9",
-  };
-
-  const [currentTheme, setCurrentTheme] = useState("");
-
-  useEffect(() => {
-    setCurrentTheme(
-      localStorage.getItem("theme") ? localStorage.theme : "light"
-    );
-  }, []);
-
-  const handleThemeChange = () => {
-    const theme = currentTheme === "light" ? DARK_THEME : LIGHT_THEME;
-
-    document.documentElement.style.setProperty(
-      "--background-1",
-      theme.background1
-    );
-    document.documentElement.style.setProperty(
-      "--background-2",
-      theme.background2
-    );
-    document.documentElement.style.setProperty("--main", theme.main);
-
-    if (localStorage.getItem("theme") && localStorage.theme === "dark") {
-      setCurrentTheme("light");
-      localStorage.theme = "light";
-    } else {
-      setCurrentTheme("dark");
-      localStorage.setItem("theme", "dark");
-    }
   };
 
   return (
@@ -90,60 +59,22 @@ const Compte = () => {
 
         <div className="account__container">
           <div className="account__buttons">
-            <button
-              className="account__buttons--button btn-anim"
-              onClick={handleThemeChange}
-            >
-              {currentTheme === "dark" ? (
+            <DarkModeButton />
+
+            {settingsButtons.map((button) => (
+              <button
+                key={button[0]}
+                className="account__buttons--button btn-anim"
+                onClick={() => handleSectionChange(button[0])}
+              >
                 <div>
-                  <i className="fa-solid fa-moon"></i> <p>Mode Sombre</p>
+                  <i className={"fa-solid " + button[1]}></i>
+                  <p>{button[0]}</p>
                 </div>
-              ) : (
-                <div>
-                  <i className="fa-solid fa-sun"></i> <p>Mode Clair</p>
-                </div>
-              )}
-            </button>
-            <button
-              className="account__buttons--button btn-anim"
-              onClick={() => handleSectionChange("MyFollows")}
-            >
-              <div>
-                <i className="fa-solid fa-user"></i>
-                <p>Mes suivis</p>
-              </div>
-              <i className="fa-solid fa-angle-right"></i>
-            </button>
-            <button
-              className="account__buttons--button btn-anim"
-              onClick={() => handleSectionChange("MyPosts")}
-            >
-              <div>
-                <i className="fa-solid fa-book"></i>
-                <p>Mes posts</p>
-              </div>
-              <i className="fa-solid fa-angle-right"></i>
-            </button>
-            <button
-              className="account__buttons--button btn-anim"
-              onClick={() => handleSectionChange("AdminPage")}
-            >
-              <div>
-                <i className="fa-solid fa-scale-balanced"></i>
-                <p>Page Admin</p>
-              </div>
-              <i className="fa-solid fa-angle-right"></i>
-            </button>
-            <button
-              className="account__buttons--button btn-anim"
-              onClick={() => handleSectionChange("CGU")}
-            >
-              <div>
-                <i className="fa-solid fa-circle-info"></i>
-                <p>CGU</p>
-              </div>
-              <i className="fa-solid fa-angle-right"></i>
-            </button>
+                <i className="fa-solid fa-angle-right"></i>
+              </button>
+            ))}
+
             <button className="btn-2">Déconnexion</button>
           </div>
 
@@ -160,11 +91,11 @@ const Compte = () => {
               switch (section) {
                 case "EditProfil":
                   return <EditProfil />;
-                case "MyFollows":
+                case "Mes suivis":
                   return <MyFollows />;
-                case "MyPosts":
+                case "Mes posts":
                   return <MyPosts />;
-                case "AdminPage":
+                case "Page Admin":
                   return <AdminPage />;
                 case "CGU":
                   return <CGU />;

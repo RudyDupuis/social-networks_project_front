@@ -1,6 +1,6 @@
 import React from "react";
-import Comments from "./Comments";
-import Posts from "./Posts";
+import Comments from "../Comments";
+import Posts from "../Posts";
 
 const AdminPage = () => {
   return (
