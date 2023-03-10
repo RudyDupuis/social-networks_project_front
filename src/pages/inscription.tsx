@@ -59,7 +59,6 @@ const inscription = () => {
     if (data) {
       try {
         const response = await axios.post("", data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }

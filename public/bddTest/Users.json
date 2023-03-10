@@ -1,0 +1,28 @@
+{
+  "Users": [
+    {
+      "id": "1",
+      "pseudo": "User",
+      "mail": "user@gmail.com",
+      "passeword": "user",
+      "rule": "user",
+      "Isbanned": false,
+      "profilPicture": "",
+      "posts": [],
+      "subscribers": [],
+      "notifications": []
+    },
+    {
+      "id": "2",
+      "pseudo": "Admin",
+      "mail": "Admin@gmail.com",
+      "passeword": "admin",
+      "rule": "admin",
+      "Isbanned": false,
+      "profilPicture": "",
+      "posts": [],
+      "subscribers": [],
+      "notifications": []
+    }
+  ]
+}

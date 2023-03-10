@@ -31,4 +31,11 @@
   @media (max-width: 450px) {
     width: auto;
   }
+
+  &__instructions {
+    margin: 20px 0;
+    color: $false;
+    text-align: center;
+    white-space: pre-wrap;
+  }
 }
