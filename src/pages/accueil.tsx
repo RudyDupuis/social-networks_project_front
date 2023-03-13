@@ -29,6 +29,10 @@ const accueil = () => {
       <section className="home">
         <section className="home__posts">
           <CreatePost />
+          <div className="home__posts--cat">
+            <button className="btn-1">Général</button>
+            <button className="btn-1">Abonnements</button>
+          </div>
           <div className="home__posts--list">
             {postsData.map((post: any) => {
               return <Posts key={post.id} data={post} />;

@@ -6,6 +6,11 @@
   &__posts {
     width: 50%;
 
+    &--cat {
+      display: flex;
+      margin: 20px 0;
+    }
+
     @media (max-width: 1000px) {
       width: 80%;
     }
