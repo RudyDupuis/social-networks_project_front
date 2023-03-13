@@ -1,7 +1,9 @@
+import CreatePost from "@/components/accueil/CreatePost";
 import Header from "@/components/Header";
 import Notifs from "@/components/Notifs";
 import Posts from "@/components/Posts";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const accueil = () => {
   //Close the notification modal and redisplay the posts section
@@ -13,22 +15,24 @@ const accueil = () => {
       "block";
   };
 
+  const [postsData, setPostsData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("./bddTest/Posts.json")
+      .then((res) => setPostsData(res.data.Posts));
+  }, []);
+
   return (
     <main>
       <Header />
       <section className="home">
         <section className="home__posts">
-          <form action="" className="message home__posts--create">
-            <textarea placeholder="Écrire un post ..."></textarea>
-            <button type="submit">
-              <i className="fa-solid fa-share"></i>
-            </button>
-          </form>
+          <CreatePost />
           <div className="home__posts--list">
-            <Posts />
-            <Posts />
-            <Posts />
-            <Posts />
+            {postsData.map((post: any) => {
+              return <Posts key={post.id} data={post} />;
+            })}
           </div>
         </section>
         <section className="home__notifs">

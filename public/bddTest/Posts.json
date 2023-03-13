@@ -1,0 +1,44 @@
+{
+    "Posts" : [
+        {
+        "id" : "1",
+        "author" : "2",
+        "message" : "Ce message est le premier message.",
+        "createdAt" : "2023-03-10T17:24:17.319Z",
+        "updatedAt" : null,
+        "comments" : [],
+        "numberLikes" : 45,
+        "signaled" : []
+    },
+        {
+        "id" : "2",
+        "author" : "2",
+        "message" : "Ce message est le deuxième message.",
+        "createdAt" : "2023-03-10T17:28:15.319Z",
+        "updatedAt" : null,
+        "comments" : [],
+        "numberLikes" : 35,
+        "signaled" : []
+    },
+        {
+        "id" : "3",
+        "author" : "1",
+        "message" : "L'utilisation de notre réseau social est soumise aux présentes conditions générales d'utilisation (CGU). En accédant et en utilisant notre plateforme, vous acceptez de respecter ces conditions et les lois applicables.",
+        "createdAt" : "2023-03-09T10:50:17.319Z",
+        "updatedAt" : null,
+        "comments" : [],
+        "numberLikes" : 10,
+        "signaled" : []
+    },
+        {
+        "id" : "4",
+        "author" : "1",
+        "message" : "Pour utiliser notre réseau social, vous devez créer un compte utilisateur. Vous devez fournir des informations précises et à jour lors de l'inscription et maintenir à jour ces informations par la suite. Vous êtes responsable de la sécurité de votre compte et de la confidentialité de votre mot de passe. Vous acceptez de ne pas partager votre compte avec des tiers et de nous informer immédiatement de toute activité suspecte.",
+        "createdAt" : "2023-03-10T19:50:17.319Z",
+        "updatedAt" : null,
+        "comments" : [],
+        "numberLikes" : 80,
+        "signaled" : []
+    }
+]
+}
