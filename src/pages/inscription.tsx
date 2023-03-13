@@ -1,19 +1,21 @@
-import CGU from "@/components/compte/CGU";
-import LogoLoginRegister from "@/components/indexInscription/LogoLoginRegister";
-import Link from "next/link";
 import React, { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
+
+import LogoLoginRegister from "@/components/indexInscription/LogoLoginRegister";
+import CheckboxCGU from "@/components/indexInscription/CheckboxCGU";
+import InputField from "@/components/InputField";
 
 const inscription = () => {
   const [instructions, setInstructions] = useState("");
-  const [pseudo, setPseudo] = useState("");
+  const [username, setUsername] = useState("");
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
 
   //Check if the input information is correct
   const dataProcessing = (
-    pseudo: string,
+    username: string,
     mail: string,
     password: string,
     confPassword: string
@@ -22,7 +24,7 @@ const inscription = () => {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[\S]{8,}$/;
     let instructionsList = [];
 
-    if (pseudo.length < 5) {
+    if (username.length < 5) {
       instructionsList.push("Le pseudo est trop court.");
     }
 
@@ -44,100 +46,84 @@ const inscription = () => {
 
     if (instructionsList.length === 0) {
       return {
-        pseudo,
+        username,
         mail,
         password,
       };
     }
   };
 
+  //Send to Api
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = dataProcessing(pseudo, mail, password, confPassword);
+    const data = dataProcessing(username, mail, password, confPassword);
 
     if (data) {
       try {
-        const response = await axios.post("", data);
-      } catch (error) {
-        console.error(error);
+        const res = await axios.post("/user/create", data);
+        setInstructions("Compte créé ! Veuillez vous connecter");
+      } catch (error: any) {
+        if (error.response.status === 409) {
+          setInstructions(
+            "Ce pseudo ou cette adresse e-mail est déjà utilisé."
+          );
+        } else {
+          setInstructions(
+            "Une erreur s'est produite lors de la création de votre compte."
+          );
+        }
       }
     }
   };
 
   return (
-    <main className="register-container">
-      <form onSubmit={handleRegister} className="register">
+    <main className="register">
+      <form onSubmit={handleRegister}>
         <LogoLoginRegister />
-        <div className="input-1">
-          <input
-            type="text"
-            placeholder="Pseudo"
-            required
-            onChange={(e) => setPseudo(e.target.value)}
-          />
-          <i className="fa-solid fa-user"></i>
-        </div>
-        <div className="input-1">
-          <input
-            type="mail"
-            placeholder="Mail"
-            required
-            onChange={(e) => setMail(e.target.value)}
-          />
-          <i className="fa-solid fa-envelope"></i>
-        </div>
-        <div className="input-1">
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <i className="fa-solid fa-lock"></i>
-        </div>
-        <div className="input-1">
-          <input
-            type="password"
-            placeholder="Confirmer le mot de passe"
-            required
-            onChange={(e) => setConfPassword(e.target.value)}
-          />
-          <i className="fa-solid fa-lock"></i>
-        </div>
-        <div className="register__checkbox">
-          <input type="checkbox" id="CGU" required />
-          <label htmlFor="CGU">
-            Accepter les{" "}
-            <strong
-              onClick={() =>
-                ((
-                  document.querySelector(".register__cgu") as HTMLElement
-                ).style.display = "block")
-              }
-            >
-              CGU
-            </strong>
-          </label>
-        </div>
+
+        <InputField
+          type="text"
+          placeholder="Pseudo"
+          required={true}
+          onChange={(e: any) => setUsername(e.target.value)}
+          icon="user"
+        />
+
+        <InputField
+          type="mail"
+          placeholder="Mail"
+          required={true}
+          onChange={(e: any) => setMail(e.target.value)}
+          icon="envelope"
+        />
+
+        <InputField
+          type="password"
+          placeholder="Mot de passe"
+          required={true}
+          onChange={(e: any) => setPassword(e.target.value)}
+          icon="lock"
+        />
+
+        <InputField
+          type="password"
+          placeholder="Confirmer le mot de passe"
+          required={true}
+          onChange={(e: any) => setConfPassword(e.target.value)}
+          icon="lock"
+        />
+
+        <CheckboxCGU />
+
         <input type="submit" value="Inscription" className="btn-1" />
+
         <Link href="/">
           Vous possédez déjà un compte ? <strong>Connexion</strong>
         </Link>
+
         <p className="register__instructions">{instructions}</p>
       </form>
-
-      <div className="register__cgu">
-        <CGU />
-        <i
-          className="fa-solid fa-circle-xmark"
-          onClick={() =>
-            ((
-              document.querySelector(".register__cgu") as HTMLElement
-            ).style.display = "none")
-          }
-        ></i>
-      </div>
     </main>
   );
 };

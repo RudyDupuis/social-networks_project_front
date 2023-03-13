@@ -2,8 +2,6 @@ import CreatePost from "@/components/accueil/CreatePost";
 import Header from "@/components/Header";
 import Notifs from "@/components/Notifs";
 import Posts from "@/components/Posts";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 
 const accueil = () => {
   //Close the notification modal and redisplay the posts section
@@ -14,14 +12,6 @@ const accueil = () => {
     (document.querySelector(".home__posts") as HTMLElement).style.display =
       "block";
   };
-
-  const [postsData, setPostsData] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("./bddTest/Posts.json")
-      .then((res) => setPostsData(res.data.Posts));
-  }, []);
 
   return (
     <main>
@@ -34,9 +24,9 @@ const accueil = () => {
             <button className="btn-1">Abonnements</button>
           </div>
           <div className="home__posts--list">
-            {postsData.map((post: any) => {
-              return <Posts key={post.id} data={post} />;
-            })}
+            <Posts />
+            <Posts />
+            <Posts />
           </div>
         </section>
         <section className="home__notifs">

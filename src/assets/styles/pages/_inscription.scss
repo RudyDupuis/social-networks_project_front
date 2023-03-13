@@ -1,13 +1,13 @@
 .register {
-  width: 400px;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  &-container {
-    min-height: 100vh;
+  form {
+    width: 400px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }

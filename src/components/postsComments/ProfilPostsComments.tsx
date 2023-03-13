@@ -3,20 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Interaction from "../Interaction";
 
-const ProfilPostsComments = ({ data }: any) => {
-  const [profilData, setProfilData] = useState([]);
-
-  useEffect(() => {
-    axios.get("./bddTest/Users.json").then((res) => {
-      const users = res.data.Users;
-      users.filter((user: any) => {
-        user.id === data.author;
-        console.log(user.id);
-      });
-      setProfilData(users);
-    });
-  }, []);
-
+const ProfilPostsComments = () => {
   return (
     <div className="posts__content--container">
       <div className="posts__content--profil">
@@ -28,9 +15,7 @@ const ProfilPostsComments = ({ data }: any) => {
         />
         <div>
           <p>John Doe</p>
-          <p className="posts-date">
-            {data.updatedAt ? data.updatedAt : data.createdAt}
-          </p>
+          <p className="posts-date">Jeudi</p>
         </div>
       </div>
       <Interaction />

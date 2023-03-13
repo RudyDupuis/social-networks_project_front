@@ -1,9 +1,11 @@
-import LogoLoginRegister from "@/components/indexInscription/LogoLoginRegister";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
-import React, { useState } from "react";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
+
+import LogoLoginRegister from "@/components/indexInscription/LogoLoginRegister";
+import InputField from "@/components/InputField";
 
 const index = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -11,6 +13,12 @@ const index = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
+  //If the connection token exists returns to the home page
+  if (Cookies.get("token")) {
+    router.push("/accueil");
+  }
+
+  //Send to Api
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -19,59 +27,54 @@ const index = () => {
       password,
     };
 
-    const res = await axios.get("./bddTest/Users.json");
-    const expires = 1;
+    try {
+      // const res = await axios.post("/user/login", data);
+      const res = await axios.get("./BackTest/login.json");
 
-    if (identifier === "Admin" && password === "admin") {
-      Cookies.set("user-id", res.data.Users[1].id, { expires });
-      Cookies.set("user-rule", res.data.Users[1].rule, { expires });
-      Cookies.set("user-pseudo", res.data.Users[1].pseudo, { expires });
-      Cookies.set("user-mail", res.data.Users[1].mail, { expires });
-      Cookies.set("user-profilPicture", res.data.Users[1].profilPicture, {
+      //create a secure cookie with a one-day expiry
+      const expires = 1;
+      Cookies.set("token", res.data.token, {
         expires,
+        // HttpOnly: true,
+        Secure: true,
       });
+
       router.push("/accueil");
-    } else if (identifier === "User" && password === "user") {
-      Cookies.set("user-id", res.data.Users[0].id, { expires });
-      Cookies.set("user-rule", res.data.Users[0].rule, { expires });
-      Cookies.set("user-pseudo", res.data.Users[0].pseudo, { expires });
-      Cookies.set("user-mail", res.data.Users[0].mail, { expires });
-      Cookies.set("user-profilPicture", res.data.Users[0].profilPicture, {
-        expires,
-      });
-      router.push("/accueil");
-    } else {
-      setErrorMessage("Votre compte n'existe pas");
+    } catch (error: any) {
+      if (error.response && error.response.status === 404) {
+        setErrorMessage("Votre compte n'existe pas");
+      }
     }
   };
 
   return (
-    <main className="login-container">
-      <form onSubmit={handleLogin} className="login">
+    <main className="login">
+      <form onSubmit={handleLogin}>
         <LogoLoginRegister />
-        <div className="input-1">
-          <input
-            type="text"
-            placeholder="Pseudo ou mail"
-            required
-            onChange={(e) => setIdentifier(e.target.value)}
-          />
-          <i className="fa-solid fa-user"></i>
-        </div>
-        <div className="input-1">
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <i className="fa-solid fa-lock"></i>
-        </div>
+
+        <InputField
+          type="text"
+          placeholder="Pseudo ou mail"
+          required={true}
+          onChange={(e: any) => setIdentifier(e.target.value)}
+          icon="user"
+        />
+
+        <InputField
+          type="password"
+          placeholder="Mot de passe"
+          required={true}
+          onChange={(e: any) => setPassword(e.target.value)}
+          icon="lock"
+        />
+
         <input type="submit" value="Connexion" className="btn-1" />
+
         <Link href="/inscription">
           <button className="btn-2">Inscription</button>
         </Link>
-        <p className="login__instructions">{errorMessage}</p>
+
+        <p className="login__error">{errorMessage}</p>
       </form>
     </main>
   );
