@@ -1,14 +1,19 @@
+import { Post } from "@/types/Profile";
 import React from "react";
 import Posts from "../Posts";
 
-const MyPosts = () => {
+interface Props {
+  data: Post[];
+}
+
+const MyPosts = ({ data }: Props) => {
   return (
     <div className="my-posts">
       <h1>Mes posts</h1>
 
-      <Posts />
-      <Posts />
-      <Posts />
+      {data.map((post) => (
+        <Posts key={post.id} data={post} />
+      ))}
     </div>
   );
 };

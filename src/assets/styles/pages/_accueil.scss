@@ -3,6 +3,11 @@
   justify-content: center;
   margin-top: 20px;
 
+  .btn-active {
+    background: $main;
+    color: $background-1;
+  }
+
   &__posts {
     width: 50%;
 
@@ -36,6 +41,12 @@
 
     .fa-circle-xmark:first-child {
       display: none;
+    }
+
+    &--list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     @media (max-width: 1000px) {

@@ -7,10 +7,6 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 const profil = () => {
-  //Get profile id
-  const router = useRouter();
-  const { id } = router.query;
-
   const [userData, setUserData] = useState<UserProfile>({
     id: 0,
     username: "",
@@ -22,6 +18,12 @@ const profil = () => {
     posts: [],
     posts_count: "",
   });
+
+  //Get profile id for create profile page
+  const router = useRouter();
+  const { id } = router.query;
+
+  //If the data is found, display the page otherwise put an error message
   const [displayProfile, setDisplayProfile] = useState(false);
 
   useEffect(() => {

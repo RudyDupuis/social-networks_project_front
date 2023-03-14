@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Image from "next/image";
 
 import Header from "@/components/Header";
@@ -9,6 +10,7 @@ import AdminPage from "@/components/compte/AdminPage";
 import CGU from "@/components/compte/CGU";
 import MyPosts from "@/components/compte/MyPosts";
 import MyFollows from "@/components/compte/MyFollows";
+import { accountProfile } from "@/types/Profile";
 
 const Compte = () => {
   //List of configuration buttons for the user account
@@ -34,6 +36,27 @@ const Compte = () => {
     setSection(newSection);
   };
 
+  //Fetch data
+  const [userData, setUserData] = useState<accountProfile>({
+    id: 0,
+    username: "",
+    email: "",
+    avatar_url: "",
+    role: "",
+    created_at: "",
+    updated_at: null,
+    posts: [],
+    posts_count: "",
+    subscriptions: [],
+  });
+
+  useEffect(() => {
+    axios
+      .get(`./BackTest/account.json`)
+      .then((res) => setUserData(res.data.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <main>
       <Header />
@@ -41,14 +64,18 @@ const Compte = () => {
         <div className="account__profil">
           <div className="account__profil--infos">
             <Image
-              src="/assets/profil-picto.png"
+              src={
+                userData.avatar_url
+                  ? userData.avatar_url
+                  : "/assets/profil-picto.png"
+              }
               alt="logo"
-              width={96 / 2}
-              height={119 / 2}
+              width={119}
+              height={119}
             />
             <div>
-              <p className="profil-pseudo">John Doe</p>
-              <p className="profil-mail">johndoe@gmail.com</p>
+              <p className="profil-pseudo">{userData.username}</p>
+              <p className="profil-mail">{userData.email}</p>
             </div>
           </div>
           <i
@@ -92,9 +119,9 @@ const Compte = () => {
                 case "EditProfil":
                   return <EditProfil />;
                 case "Mes suivis":
-                  return <MyFollows />;
+                  return <MyFollows data={userData.subscriptions} />;
                 case "Mes posts":
-                  return <MyPosts />;
+                  return <MyPosts data={userData.posts} />;
                 case "Page Admin":
                   return <AdminPage />;
                 case "CGU":

@@ -1,0 +1,211 @@
+{
+  "message": "Posts fetched successfully",
+  "data": [
+    {
+      "id": 4,
+      "message": "Après des heures de lecture, de vidéo et de pratique, je suis heureux de dire que j'ai finalement compris ce qu'est une promesse en JavaScript. C'est une fonctionnalité très utile pour gérer les opérations asynchrones, et je suis impatient de l'appliquer dans mes projets futurs !",
+      "author": 7,
+      "created_at": "2023-03-09T12:58:58.688+01:00",
+      "updated_at": "2023-03-09T12:58:58.688+01:00",
+      "user": {
+        "id": 7,
+        "username": "Cathy.Veum",
+        "email": "Erik.Huel@hotmail.com",
+        "avatar_url": "/assets/profil4.png",
+        "role": "USER",
+        "created_at": "2023-03-09T12:58:58.418+01:00",
+        "updated_at": "2023-03-09T12:58:58.418+01:00"
+      },
+      "comments": [
+        {
+          "id": 2,
+          "message": "Wow, super intéressant ! J'adore voir comment tu as résolu ce problème technique. Tu as utilisé une approche intelligente et efficace, j'aimerais beaucoup pouvoir en apprendre plus sur ta méthode de travail !",
+          "author": 3,
+          "post_id": 4,
+          "created_at": "2023-03-09T12:58:58.712+01:00",
+          "updated_at": "2023-03-09T12:58:58.712+01:00",
+          "user": {
+            "id": 3,
+            "username": "Jordon96",
+            "email": "Jamey97@gmail.com",
+            "avatar_url": "/assets/profil2.png",
+            "role": "USER",
+            "created_at": "2023-03-09T12:58:58.244+01:00",
+            "updated_at": "2023-03-09T12:58:58.244+01:00"
+          },
+          "likes_count": "7"
+        }
+      ],
+      "comments_count": "1",
+      "likes_count": "15"
+    },
+    {
+      "id": 5,
+      "message": "Je suis en train de travailler sur un projet de site web pour un client, et j'aimerais améliorer ses performances pour que les utilisateurs puissent y accéder plus rapidement. J'ai déjà optimisé les images et le code, mais je suis à la recherche d'autres astuces pour améliorer les temps de chargement. Si vous avez des conseils, je suis preneur ! ",
+      "author": 7,
+      "created_at": "2023-03-10T13:40:58.688+01:00",
+      "updated_at": null,
+      "user": {
+        "id": 7,
+        "username": "Cathy.Veum",
+        "email": "Erik.Huel@hotmail.com",
+        "avatar_url": "/assets/profil4.png",
+        "role": "USER",
+        "created_at": "2023-03-09T12:58:58.418+01:00",
+        "updated_at": "2023-03-09T12:58:58.418+01:00"
+      },
+      "comments": [
+        {
+          "id": 3,
+          "message": "Félicitations pour cette belle réalisation ! Le design est très réussi et la fonctionnalité est géniale. Je suis impressionné par la qualité de ton code et la façon dont tu as intégré tous les éléments. Continue à partager tes projets, j'ai hâte de voir ce que tu vas faire ensuite !",
+          "author": 3,
+          "post_id": 5,
+          "created_at": "2023-03-09T12:58:58.712+01:00",
+          "updated_at": "",
+          "user": {
+            "id": 3,
+            "username": "Jordon96",
+            "email": "Jamey97@gmail.com",
+            "avatar_url": "/assets/profil2.png",
+            "role": "USER",
+            "created_at": "2023-03-09T12:58:58.244+01:00",
+            "updated_at": ""
+          },
+          "likes_count": "4"
+        }
+      ],
+      "comments_count": "1",
+      "likes_count": "5"
+    },
+    {
+      "id": 41,
+      "message": "Salut tout le monde ! J'espère que vous passez une excellente journée. Je suis ravi de partager avec vous ma dernière découverte en matière de programmation. J'ai récemment exploré une nouvelle bibliothèque qui m'a permis de résoudre un problème de manière beaucoup plus efficace que ce que j'avais fait auparavant. La bibliothèque s'appelle [nom de la bibliothèque], et elle m'a permis d'accélérer considérablement le temps de chargement de mon application. Je suis sûr que certains d'entre vous connaissent déjà cette bibliothèque, mais pour ceux qui ne la connaissent pas, je vous encourage vivement à l'essayer. Elle pourrait vous faire gagner beaucoup de temps et améliorer les performances de votre application. N'hésitez pas à me poser des questions ou à partager vos propres découvertes en matière de programmation. J'aime discuter avec d'autres développeurs et apprendre de nouvelles choses.",
+      "author": 3,
+      "created_at": "2023-03-09T12:58:58.688+01:00",
+      "updated_at": "2023-03-09T12:58:58.688+01:00",
+      "user": {
+        "id": 3,
+        "username": "Jordon96",
+        "email": "Jamey97@gmail.com",
+        "avatar_url": "/assets/profil2.png",
+        "role": "USER",
+        "created_at": "2023-03-09T12:58:58.418+01:00",
+        "updated_at": "2023-03-09T12:58:58.418+01:00"
+      },
+      "comments_count": "0",
+      "likes_count": "50"
+    },
+    {
+      "id": 90,
+      "message": "Salut les gars ! Je voulais partager avec vous une découverte intéressante que j'ai faite récemment en matière de sécurité. J'ai trouvé une nouvelle librairie de cryptographie appelée [nom de la librairie] qui m'a permis de renforcer la sécurité de mes applications. Si vous cherchez à renforcer la sécurité de vos propres projets, je vous recommande vivement de l'essayer !",
+      "author": 3,
+      "created_at": "2023-03-10T13:40:58.688+01:00",
+      "updated_at": null,
+      "user": {
+        "id": 3,
+        "username": "Jordon96",
+        "email": "Jamey97@gmail.com",
+        "avatar_url": "/assets/profil2.png",
+        "role": "USER",
+        "created_at": "2023-03-09T12:58:58.418+01:00",
+        "updated_at": "2023-03-09T12:58:58.418+01:00"
+      },
+      "comments": [
+        {
+          "id": 10,
+          "message": "Merci beaucoup pour cette découverte ! La sécurité est un enjeu crucial pour de nombreux projets, et il est toujours bon de trouver de nouveaux outils pour la renforcer. J'ai téléchargé la bibliothèque que vous avez mentionnée et je suis impatient de l'essayer sur mes propres projets. Merci encore pour le partage de vos connaissances en matière de sécurité !",
+          "author": 7,
+          "post_id": 5,
+          "created_at": "2023-03-09T12:58:58.712+01:00",
+          "updated_at": "",
+          "user": {
+            "id": 7,
+            "username": "Cathy.Veum",
+            "email": "Erik.Huel@hotmail.com",
+            "avatar_url": "/assets/profil4.png",
+            "role": "USER",
+            "created_at": "2023-03-09T12:58:58.244+01:00",
+            "updated_at": ""
+          },
+          "likes_count": "4"
+        },
+        {
+          "id": 8,
+          "message": "Merci beaucoup !",
+          "author": 3,
+          "post_id": 5,
+          "created_at": "2023-03-09T12:58:58.712+01:00",
+          "updated_at": "",
+          "user": {
+            "id": 3,
+            "username": "Jordon96",
+            "email": "Jamey97@gmail.com",
+            "avatar_url": "/assets/profil2.png",
+            "role": "USER",
+            "created_at": "2023-03-09T12:58:58.244+01:00",
+            "updated_at": ""
+          },
+          "likes_count": "4"
+        }
+      ],
+      "comments_count": "2",
+      "likes_count": "5"
+    },
+    {
+      "id": 102,
+      "message": "Salut tout le monde ! ",
+      "author": 1,
+      "created_at": "2023-03-09T12:58:58.688+01:00",
+      "updated_at": null,
+      "user": {
+        "id": 1,
+        "username": "Moustache",
+        "email": "Moustche@gmail.com",
+        "avatar_url": "/assets/profil1.png",
+        "role": "USER",
+        "created_at": "2023-03-09T12:58:58.418+01:00",
+        "updated_at": null
+      },
+      "comments_count": "0",
+      "likes_count": "20"
+    },
+    {
+      "id": 98,
+      "message": "Salut les gars ! C'est moustache",
+      "author": 1,
+      "created_at": "2023-03-10T13:40:58.688+01:00",
+      "updated_at": null,
+      "user": {
+        "id": 1,
+        "username": "Moustache",
+        "email": "Moustache@gmail.com",
+        "avatar_url": "/assets/profil1.png",
+        "role": "USER",
+        "created_at": "2023-03-09T12:58:58.418+01:00",
+        "updated_at": "2023-03-09T12:58:58.418+01:00"
+      },
+      "comments": [
+        {
+          "id": 87,
+          "message": "Bonjour moustache",
+          "author": 7,
+          "post_id": 8,
+          "created_at": "2023-03-09T12:58:58.712+01:00",
+          "updated_at": null,
+          "user": {
+            "id": 7,
+            "username": "Cathy.Veum",
+            "email": "Erik.Huel@hotmail.com",
+            "avatar_url": "/assets/profil4.png",
+            "role": "USER",
+            "created_at": "2023-03-09T12:58:58.244+01:00",
+            "updated_at": ""
+          },
+          "likes_count": "4"
+        }
+      ],
+      "comments_count": "1",
+      "likes_count": "89"
+    }
+  ]
+}
