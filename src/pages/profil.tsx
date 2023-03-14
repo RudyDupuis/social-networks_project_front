@@ -1,39 +1,79 @@
 import Header from "@/components/Header";
 import Posts from "@/components/Posts";
+import { UserProfile } from "@/types/Profile";
+import axios from "axios";
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
 const profil = () => {
+  //Get profile id
+  const router = useRouter();
+  const { id } = router.query;
+
+  const [userData, setUserData] = useState<UserProfile>({
+    id: 0,
+    username: "",
+    email: "",
+    avatar_url: "",
+    role: "",
+    created_at: "",
+    updated_at: null,
+    posts: [],
+    posts_count: "",
+  });
+  const [displayProfile, setDisplayProfile] = useState(false);
+
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`./BackTest/profil${id}.json`)
+        .then((res) => {
+          setDisplayProfile(true);
+          setUserData(res.data.data);
+        })
+        .catch(() => setDisplayProfile(false));
+    }
+  }, [id]);
+
   return (
     <main>
       <Header />
-      <section className="profil">
-        <div className="profil__infos">
-          <div className="profil__infos--content">
-            <Image
-              src="/assets/profil-picto.png"
-              alt="logo"
-              width={96 / 2}
-              height={119 / 2}
-            />
-            <div>
-              <p className="profil-pseudo">John Doe</p>
-              <p className="profil-mail">johndoe@gmail.com</p>
+      {displayProfile ? (
+        <section className="profil">
+          <div className="profil__infos">
+            <div className="profil__infos--content">
+              <Image
+                src={
+                  userData.avatar_url
+                    ? userData.avatar_url
+                    : "/assets/profil-picto.png"
+                }
+                alt="logo"
+                width={119}
+                height={119}
+              />
+
+              <div>
+                <p className="profil-pseudo">{userData.username}</p>
+                <p className="profil-mail">{userData.email}</p>
+              </div>
+            </div>
+            <div className="profil__infos--buttons">
+              <button className="btn-2">Suivre</button>
+              <button className="btn-2">Bannir</button>
             </div>
           </div>
-          <div className="profil__infos--buttons">
-            <button className="btn-2">Suivre</button>
-            <button className="btn-2">Bannir</button>
-          </div>
-        </div>
 
-        <div className="profil__posts">
-          <Posts />
-          <Posts />
-          <Posts />
-          <Posts />
-        </div>
-      </section>
+          <div className="profil__posts">
+            {userData.posts.map((post) => (
+              <Posts key={post.id} data={post} />
+            ))}
+          </div>
+        </section>
+      ) : (
+        <h2 className="profil-error">Profil non trouvé</h2>
+      )}
     </main>
   );
 };

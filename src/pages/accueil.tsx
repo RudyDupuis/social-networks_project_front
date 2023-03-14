@@ -2,16 +2,28 @@ import CreatePost from "@/components/accueil/CreatePost";
 import Header from "@/components/Header";
 import Notifs from "@/components/Notifs";
 import Posts from "@/components/Posts";
+import { Post } from "@/types/Profile";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const accueil = () => {
   //Close the notification modal and redisplay the posts section
   const closeNotifs = () => {
-    (document.querySelector(".home__notifs") as HTMLElement).classList.remove(
-      "home__notifs--open"
-    );
-    (document.querySelector(".home__posts") as HTMLElement).style.display =
-      "block";
+    const notifs = document.querySelector(".home__notifs") as HTMLElement;
+    notifs.classList.remove("home__notifs--open");
+    const posts = document.querySelector(".home__posts") as HTMLElement;
+    posts.style.display = "block";
   };
+
+  //Fetch data
+  const [postsData, setPostsData] = useState<Post[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("./BackTest/home.json")
+      .then((res) => setPostsData(res.data.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <main>
@@ -24,9 +36,9 @@ const accueil = () => {
             <button className="btn-1">Abonnements</button>
           </div>
           <div className="home__posts--list">
-            <Posts />
-            <Posts />
-            <Posts />
+            {postsData.map((post) => (
+              <Posts key={post.id} data={post} />
+            ))}
           </div>
         </section>
         <section className="home__notifs">
