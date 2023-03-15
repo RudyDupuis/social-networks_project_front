@@ -2,7 +2,9 @@ export interface accountProfile {
     id: number;
     username: string;
     email: string;
-    avatar_url: string;
+    avatar: {
+      url : string;
+    };
     role: string;
     created_at: string;
     updated_at: string | null;
@@ -15,7 +17,9 @@ export interface UserProfile {
     id: number;
     username: string;
     email: string;
-    avatar_url: string;
+    avatar: {
+      url: string;
+    };
     role: string;
     created_at: string;
     updated_at: string | null;
@@ -23,6 +27,14 @@ export interface UserProfile {
     posts_count: string;
   }
   
+  export interface UserProfileLight {
+    id: number;
+    username: string;
+    avatar: {
+      url: string;
+    };
+  } 
+
   export interface Post {
     id: number;
     message: string;
@@ -34,7 +46,7 @@ export interface UserProfile {
     comments_count: string;
     likes_count: string;
   }
-  
+
   export interface Comment {
     id: number;
     message: string;

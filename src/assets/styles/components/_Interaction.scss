@@ -23,7 +23,8 @@
     margin-left: 13px;
   }
 
-  i:active {
+  .fa-heart:active,
+  .fa-flag:active {
     transform: translateY(-10px);
   }
 }

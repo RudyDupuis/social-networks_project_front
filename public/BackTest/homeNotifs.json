@@ -9,7 +9,9 @@
       "user": {
         "id": 7,
         "username": "Cathy.Veum",
-        "avatar_url": "/assets/profil4.png"
+        "avatar": {
+          "url": "/assets/profil4.png"
+        }
       }
     },
     {
@@ -20,7 +22,9 @@
       "user": {
         "id": 7,
         "username": "Cathy.Veum",
-        "avatar_url": "/assets/profil4.png"
+        "avatar": {
+          "url": "/assets/profil4.png"
+        }
       }
     },
     {
@@ -31,7 +35,9 @@
       "user": {
         "id": 3,
         "username": "Jordon96",
-        "avatar_url": "/assets/profil2.png"
+        "avatar": {
+          "url": "/assets/profil2.png"
+        }
       }
     }
   ]

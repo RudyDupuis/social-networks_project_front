@@ -1,4 +1,4 @@
-import { Post } from "@/types/Profile";
+import { Post } from "@/types/Interface";
 import Image from "next/image";
 import React from "react";
 import Comments from "./Comments";
@@ -26,8 +26,8 @@ const Posts = ({ data }: Props) => {
             <Link href={{ pathname: "/profil", query: { id: data.user.id } }}>
               <Image
                 src={
-                  data.user.avatar_url
-                    ? data.user.avatar_url
+                  data.user.avatar.url
+                    ? data.user.avatar.url
                     : "/assets/profil-picto.png"
                 }
                 alt="logo"
@@ -51,10 +51,7 @@ const Posts = ({ data }: Props) => {
             comments={data.comments_count}
           />
         </div>
-        <div className="posts__content--message">
-          <EditText />
-          <p>{data.message}</p>
-        </div>
+        <EditText data={data.message} />
       </div>
 
       <CreateComment />

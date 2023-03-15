@@ -1,4 +1,4 @@
-import { Comment } from "@/types/Profile";
+import { Comment } from "@/types/Interface";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -23,8 +23,8 @@ const Comments = ({ data }: Props) => {
           <Link href={{ pathname: "/profil", query: { id: data.user.id } }}>
             <Image
               src={
-                data.user.avatar_url
-                  ? data.user.avatar_url
+                data.user.avatar.url
+                  ? data.user.avatar.url
                   : "/assets/profil-picto.png"
               }
               alt="logo"
@@ -44,10 +44,7 @@ const Comments = ({ data }: Props) => {
         </div>
         <Interaction likes={data.likes_count} comments={null} />
       </div>
-      <div className="posts__content--message">
-        <EditText />
-        <p>{data.message}</p>
-      </div>
+      <EditText data={data.message} />
     </div>
   );
 };

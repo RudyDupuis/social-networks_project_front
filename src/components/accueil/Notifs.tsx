@@ -1,7 +1,9 @@
-import { Notif } from "@/types/Profile";
+import { Notif } from "@/types/Interface";
+import axios from "axios";
+import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface Props {
   data: Notif;
@@ -14,13 +16,27 @@ const Notifs = ({ data }: Props) => {
     return `${day}/${month}/${year.substr(2)} à ${hour} h ${minute}`;
   }
 
+  const [deletionRequest, setDeletionRequest] = useState(false);
+
+  useEffect(() => {
+    if (deletionRequest) {
+      axios
+        .delete("", {
+          headers: {
+            Authorization: `bearer ${Cookies.get("token")}`,
+          },
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [deletionRequest]);
+
   return (
     <div className="notification">
       <Link href={{ pathname: "/profil", query: { id: data.user.id } }}>
         <Image
           src={
-            data.user.avatar_url
-              ? data.user.avatar_url
+            data.user.avatar.url
+              ? data.user.avatar.url
               : "/assets/profil-picto.png"
           }
           alt="logo"
@@ -32,7 +48,10 @@ const Notifs = ({ data }: Props) => {
         <p>{data.message}</p>
         <p className="notification__date">{formatDate(data.created_at)}</p>
       </div>
-      <i className="fa-solid fa-circle-xmark btn-anim"></i>
+      <i
+        className="fa-solid fa-circle-xmark btn-anim"
+        onClick={() => setDeletionRequest(true)}
+      ></i>
     </div>
   );
 };

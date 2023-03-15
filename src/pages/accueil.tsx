@@ -1,8 +1,8 @@
 import CreatePost from "@/components/accueil/CreatePost";
-import Header from "@/components/Header";
-import Notifs from "@/components/Notifs";
+import Header from "@/components/header/Header";
+import Notifs from "@/components/accueil/Notifs";
 import Posts from "@/components/Posts";
-import { Notif, Post } from "@/types/Profile";
+import { Notif, Post } from "@/types/Interface";
 import axios from "axios";
 import { useEffect, useState } from "react";
 

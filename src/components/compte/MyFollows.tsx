@@ -1,4 +1,4 @@
-import { UserProfile } from "@/types/Profile";
+import { UserProfile } from "@/types/Interface";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -21,8 +21,8 @@ const MyFollows = ({ data }: Props) => {
             <div>
               <Image
                 src={
-                  profil.avatar_url
-                    ? profil.avatar_url
+                  profil.avatar.url
+                    ? profil.avatar.url
                     : "/assets/profil-picto.png"
                 }
                 alt="logo"

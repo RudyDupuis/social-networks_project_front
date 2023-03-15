@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 
-import Header from "@/components/Header";
+import Header from "@/components/header/Header";
 import DarkModeButton from "@/components/compte/DarkModeButton";
 
 import EditProfil from "@/components/compte/EditProfil";
@@ -10,7 +10,7 @@ import AdminPage from "@/components/compte/AdminPage";
 import CGU from "@/components/compte/CGU";
 import MyPosts from "@/components/compte/MyPosts";
 import MyFollows from "@/components/compte/MyFollows";
-import { accountProfile } from "@/types/Profile";
+import { accountProfile } from "@/types/Interface";
 
 const Compte = () => {
   //List of configuration buttons for the user account
@@ -41,7 +41,9 @@ const Compte = () => {
     id: 0,
     username: "",
     email: "",
-    avatar_url: "",
+    avatar: {
+      url: "",
+    },
     role: "",
     created_at: "",
     updated_at: null,
@@ -60,24 +62,28 @@ const Compte = () => {
   return (
     <main>
       <Header />
+
       <section className="account">
         <div className="account__profil">
           <div className="account__profil--infos">
             <Image
               src={
-                userData.avatar_url
-                  ? userData.avatar_url
+                userData.avatar.url
+                  ? userData.avatar.url
                   : "/assets/profil-picto.png"
               }
               alt="logo"
               width={119}
               height={119}
             />
+
             <div>
               <p className="profil-pseudo">{userData.username}</p>
+
               <p className="profil-mail">{userData.email}</p>
             </div>
           </div>
+
           <i
             className="fa-solid fa-pen btn-anim"
             onClick={() => handleSectionChange("EditProfil")}

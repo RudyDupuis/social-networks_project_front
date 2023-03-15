@@ -1,4 +1,4 @@
-import { Post } from "@/types/Profile";
+import { Post } from "@/types/Interface";
 import React from "react";
 import Posts from "../Posts";
 

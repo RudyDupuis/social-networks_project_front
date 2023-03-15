@@ -1,6 +1,6 @@
-import Header from "@/components/Header";
+import Header from "@/components/header/Header";
 import Posts from "@/components/Posts";
-import { UserProfile } from "@/types/Profile";
+import { UserProfile } from "@/types/Interface";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -11,7 +11,9 @@ const profil = () => {
     id: 0,
     username: "",
     email: "",
-    avatar_url: "",
+    avatar: {
+      url: "",
+    },
     role: "",
     created_at: "",
     updated_at: null,
@@ -47,8 +49,8 @@ const profil = () => {
             <div className="profil__infos--content">
               <Image
                 src={
-                  userData.avatar_url
-                    ? userData.avatar_url
+                  userData.avatar.url
+                    ? userData.avatar.url
                     : "/assets/profil-picto.png"
                 }
                 alt="logo"

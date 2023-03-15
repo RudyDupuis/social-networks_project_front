@@ -4,7 +4,9 @@
     "id": 1,
     "username": "Moustache",
     "email": "Moustche@gmail.com",
-    "avatar_url": "/assets/profil1.png",
+    "avatar": {
+      "url": "/assets/profil1.png"
+    },
     "role": "USER",
     "created_at": "2023-03-09T12:58:58.418+01:00",
     "updated_at": null,
@@ -19,7 +21,9 @@
           "id": 1,
           "username": "Moustache",
           "email": "Moustche@gmail.com",
-          "avatar_url": "/assets/profil1.png",
+          "avatar": {
+            "url": "/assets/profil1.png"
+          },
           "role": "USER",
           "created_at": "2023-03-09T12:58:58.418+01:00",
           "updated_at": null
@@ -37,7 +41,9 @@
           "id": 1,
           "username": "Moustache",
           "email": "Moustache@gmail.com",
-          "avatar_url": "/assets/profil1.png",
+          "avatar": {
+            "url": "/assets/profil1.png"
+          },
           "role": "USER",
           "created_at": "2023-03-09T12:58:58.418+01:00",
           "updated_at": "2023-03-09T12:58:58.418+01:00"
@@ -54,7 +60,9 @@
               "id": 7,
               "username": "Cathy.Veum",
               "email": "Erik.Huel@hotmail.com",
-              "avatar_url": "/assets/profil4.png",
+              "avatar": {
+                "url": "/assets/profil4.png"
+              },
               "role": "USER",
               "created_at": "2023-03-09T12:58:58.244+01:00",
               "updated_at": ""
@@ -71,12 +79,16 @@
       {
         "id": 7,
         "username": "Cathy.Veum",
-        "avatar_url": "/assets/profil4.png"
+        "avatar": {
+          "url": "/assets/profil4.png"
+        }
       },
       {
         "id": 3,
         "username": "Jordon96",
-        "avatar_url": "/assets/profil2.png"
+        "avatar": {
+          "url": "/assets/profil2.png"
+        }
       }
     ]
   }

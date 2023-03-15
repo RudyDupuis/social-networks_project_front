@@ -14,7 +14,7 @@ const Interaction = ({ likes, comments }: Props) => {
       </div>
       <div className="interaction__message">
         <p>{comments}</p>
-        <i className="fa-solid fa-message btn-anim"></i>
+        <i className="fa-solid fa-message"></i>
       </div>
       <i className="fa-solid fa-flag btn-anim"></i>
     </div>
