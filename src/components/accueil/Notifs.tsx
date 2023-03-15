@@ -16,19 +16,15 @@ const Notifs = ({ data }: Props) => {
     return `${day}/${month}/${year.substr(2)} à ${hour} h ${minute}`;
   }
 
-  const [deletionRequest, setDeletionRequest] = useState(false);
-
-  useEffect(() => {
-    if (deletionRequest) {
-      axios
-        .delete("", {
-          headers: {
-            Authorization: `bearer ${Cookies.get("token")}`,
-          },
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [deletionRequest]);
+  const deleteNotif = () => {
+    axios
+      .delete("", {
+        headers: {
+          Authorization: `bearer ${Cookies.get("token")}`,
+        },
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="notification">
@@ -50,7 +46,7 @@ const Notifs = ({ data }: Props) => {
       </div>
       <i
         className="fa-solid fa-circle-xmark btn-anim"
-        onClick={() => setDeletionRequest(true)}
+        onClick={() => deleteNotif()}
       ></i>
     </div>
   );

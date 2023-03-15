@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ProfileLinkButton from "../ProfileLinkButton";
+import { UserProfileLight } from "@/types/Interface";
 
 const SearchInput = () => {
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [usersData, setUsersData] = useState([]);
+  const [usersData, setUsersData] = useState<UserProfileLight[]>([]);
 
   //Prevents the modal from disappearing if you click on a profile
   const handleBlur = (e: any) => {
@@ -51,7 +52,9 @@ const SearchInput = () => {
         style={{ display: searchFocused ? "block" : "none" }}
       >
         {usersData &&
-          usersData.map((user) => <ProfileLinkButton data={user} />)}
+          usersData.map((user) => (
+            <ProfileLinkButton key={user.id} data={user} />
+          ))}
       </div>
     </div>
   );

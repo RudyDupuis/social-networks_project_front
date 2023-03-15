@@ -21,6 +21,7 @@ export interface UserProfile {
       url: string;
     };
     role: string;
+    isbanned : false | true,
     created_at: string;
     updated_at: string | null;
     posts: Post[];

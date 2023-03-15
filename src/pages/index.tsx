@@ -39,6 +39,18 @@ const index = () => {
         Secure: true,
       });
 
+      Cookies.set("role", res.data.role, {
+        expires,
+        // HttpOnly: true,
+        Secure: true,
+      });
+
+      Cookies.set("id", res.data.id, {
+        expires,
+        // HttpOnly: true,
+        Secure: true,
+      });
+
       router.push("/accueil");
     } catch (error: any) {
       if (error.response && error.response.status === 404) {

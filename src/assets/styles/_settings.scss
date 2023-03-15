@@ -158,3 +158,16 @@ button {
     }
   }
 }
+
+.edit-message {
+  width: 100%;
+  resize: none;
+  min-height: 100px;
+  padding: 20px;
+  background: $background-2;
+  border: 2px solid $background-2;
+
+  &:focus {
+    background: $background-1;
+  }
+}

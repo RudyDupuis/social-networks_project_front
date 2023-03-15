@@ -2,6 +2,7 @@ import Header from "@/components/header/Header";
 import Posts from "@/components/Posts";
 import { UserProfile } from "@/types/Interface";
 import axios from "axios";
+import Cookies from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -15,6 +16,7 @@ const profil = () => {
       url: "",
     },
     role: "",
+    isbanned: false,
     created_at: "",
     updated_at: null,
     posts: [],
@@ -35,10 +37,70 @@ const profil = () => {
         .then((res) => {
           setDisplayProfile(true);
           setUserData(res.data.data);
+
+          if (res.data.data.isbanned && Cookies.get("role") !== "ADMIN") {
+            setDisplayProfile(false);
+          }
         })
         .catch(() => setDisplayProfile(false));
     }
   }, [id]);
+
+  //Know the role of the user
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    if (Cookies.get("role") === "ADMIN") {
+      setIsAdmin(true);
+    }
+  }, []);
+
+  //Banish
+  const [userBanned, setUserBanned] = useState(userData.isbanned);
+
+  const banish = () => {
+    let value = true;
+    if (userBanned) {
+      value = false;
+    }
+    setUserBanned(value);
+
+    const data = {
+      isbanned: value,
+    };
+    axios
+      .put("" + id, data, {
+        headers: {
+          Authorization: `bearer ${Cookies.get("token")}`,
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //Follow
+  const [userFollow, setUserFollow] = useState(false);
+
+  const follow = () => {
+    let value = true;
+    if (userFollow) {
+      value = false;
+    }
+    setUserFollow(value);
+
+    const data = {
+      follow: value,
+    };
+    axios
+      .put("" + id, data, {
+        headers: {
+          Authorization: `bearer ${Cookies.get("token")}`,
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <main>
@@ -60,12 +122,18 @@ const profil = () => {
 
               <div>
                 <p className="profil-pseudo">{userData.username}</p>
-                <p className="profil-mail">{userData.email}</p>
+                {isAdmin && <p className="profil-mail">{userData.email}</p>}
               </div>
             </div>
             <div className="profil__infos--buttons">
-              <button className="btn-2">Suivre</button>
-              <button className="btn-2">Bannir</button>
+              <button className="btn-2" onClick={() => follow()}>
+                {userFollow ? "Ne plus suivre" : "Suivre"}
+              </button>
+              {isAdmin && (
+                <button className="btn-2" onClick={() => banish()}>
+                  {userBanned ? "Débannir" : "Bannir"}
+                </button>
+              )}
             </div>
           </div>
 

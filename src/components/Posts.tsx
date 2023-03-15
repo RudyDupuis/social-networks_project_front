@@ -49,9 +49,16 @@ const Posts = ({ data }: Props) => {
           <Interaction
             likes={data.likes_count}
             comments={data.comments_count}
+            id={data.id}
+            type={"post"}
           />
         </div>
-        <EditText data={data.message} />
+        <EditText
+          message={data.message}
+          author={data.author}
+          id={data.id}
+          type={"post"}
+        />
       </div>
 
       <CreateComment />
