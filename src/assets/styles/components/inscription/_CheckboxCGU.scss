@@ -1,0 +1,46 @@
+.register {
+  &__checkbox {
+    align-self: start;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  label {
+    margin-left: 5px;
+    font-size: 0.8rem;
+  }
+
+  &__cgu {
+    background: $background-1;
+    padding: 80px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @media (max-width: 800px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+      h2 {
+        font-size: 1rem;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      padding: 40px;
+    }
+
+    i {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.6rem;
+    }
+  }
+}

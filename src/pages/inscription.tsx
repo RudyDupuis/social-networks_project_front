@@ -22,9 +22,10 @@ const inscription = () => {
   ) => {
     const mailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[\S]{8,}$/;
+    const usernameLength = 5;
     let instructionsList = [];
 
-    if (username.length < 5) {
+    if (username.length < usernameLength) {
       instructionsList.push("Le pseudo est trop court.");
     }
 
@@ -62,6 +63,7 @@ const inscription = () => {
     if (data) {
       try {
         const res = await axios.post("/user/create", data);
+
         setInstructions("Compte créé ! Veuillez vous connecter");
       } catch (error: any) {
         if (error.response.status === 409) {

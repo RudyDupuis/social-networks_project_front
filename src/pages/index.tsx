@@ -60,7 +60,6 @@ const index = () => {
       for (let i = 0; i < dataKey.length; i++) {
         Cookies.set(dataKey[i], dataValue[i], {
           expires,
-          // HttpOnly: true,
           Secure: true,
         });
       }

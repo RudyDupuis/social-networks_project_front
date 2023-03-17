@@ -7,7 +7,7 @@ import DarkModeButton from "@/components/compte/DarkModeButton";
 
 import EditProfil from "@/components/compte/EditProfil";
 import AdminPage from "@/components/compte/AdminPage";
-import CGU from "@/components/compte/CGU";
+import CGU from "@/components/CGU";
 import MyPosts from "@/components/compte/MyPosts";
 import MyFollows from "@/components/compte/MyFollows";
 import { accountProfile } from "@/types/Interface";

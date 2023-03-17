@@ -4,8 +4,16 @@
   align-items: center;
   justify-content: center;
 
+  &__instructions {
+    margin: 20px 0;
+    color: $false;
+    text-align: center;
+    white-space: pre-wrap;
+  }
+
   form {
     width: 400px;
+    max-width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,8 +24,7 @@
     }
   }
 
-  a,
-  label {
+  a {
     font-size: 0.8rem;
     text-align: center;
   }
@@ -27,71 +34,15 @@
     cursor: pointer;
   }
 
-  img {
+  .logo {
     margin-bottom: 40px;
   }
 
-  div {
+  .input-1 {
     margin-bottom: 15px;
-  }
-
-  &__checkbox {
-    align-self: start;
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  label {
-    margin-left: 5px;
   }
 
   .btn-1 {
     margin-bottom: 15px;
-  }
-
-  &__cgu {
-    background: $background-1;
-    padding: 80px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-
-    @media (max-width: 800px) {
-      h1 {
-        font-size: 1.2rem;
-      }
-      h2 {
-        font-size: 1rem;
-      }
-      p {
-        font-size: 0.9rem;
-      }
-    }
-
-    @media (max-width: 500px) {
-      padding: 40px;
-    }
-
-    i {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
-      font-size: 1.6rem;
-
-      &:hover {
-        color: $secondary;
-      }
-    }
-  }
-
-  &__instructions {
-    margin: 20px 0;
-    color: $false;
-    text-align: center;
-    white-space: pre-wrap;
   }
 }
