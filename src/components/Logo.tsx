@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-const LogoLoginRegister = () => {
+const Logo = () => {
   //Change the image according to the theme
   const [currentTheme, setCurrentTheme] = useState("");
 
@@ -12,7 +12,7 @@ const LogoLoginRegister = () => {
   }, []);
 
   return (
-    <div>
+    <div className="logo">
       {currentTheme === "dark" ? (
         <Image
           src="/assets/logo-dark.png"
@@ -32,4 +32,4 @@ const LogoLoginRegister = () => {
   );
 };
 
-export default LogoLoginRegister;
+export default Logo;

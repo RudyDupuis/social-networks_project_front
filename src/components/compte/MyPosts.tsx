@@ -1,6 +1,6 @@
 import { Post } from "@/types/Interface";
 import React from "react";
-import Posts from "../Posts";
+import Posts from "../posts/Posts";
 
 interface Props {
   data: Post[];

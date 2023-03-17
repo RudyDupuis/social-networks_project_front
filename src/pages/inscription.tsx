@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 
-import LogoLoginRegister from "@/components/indexInscription/LogoLoginRegister";
-import CheckboxCGU from "@/components/indexInscription/CheckboxCGU";
+import Logo from "@/components/Logo";
+import CheckboxCGU from "@/components/inscription/CheckboxCGU";
 import InputField from "@/components/InputField";
 
 const inscription = () => {
@@ -80,7 +80,7 @@ const inscription = () => {
   return (
     <main className="register">
       <form onSubmit={handleRegister}>
-        <LogoLoginRegister />
+        <Logo />
 
         <InputField
           type="text"

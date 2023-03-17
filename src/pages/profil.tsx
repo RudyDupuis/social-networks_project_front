@@ -1,5 +1,5 @@
 import Header from "@/components/header/Header";
-import Posts from "@/components/Posts";
+import Posts from "@/components/posts/Posts";
 import { UserProfile } from "@/types/Interface";
 import axios from "axios";
 import Cookies from "js-cookie";

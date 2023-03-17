@@ -2,8 +2,8 @@ import { Comment } from "@/types/Interface";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import EditText from "./postsComments/EditText";
-import Interaction from "./postsComments/Interaction";
+import EditText from "./EditText";
+import Interaction from "./Interaction";
 
 interface Props {
   data: Comment;

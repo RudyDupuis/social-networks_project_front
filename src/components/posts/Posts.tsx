@@ -2,9 +2,9 @@ import { Post } from "@/types/Interface";
 import Image from "next/image";
 import React from "react";
 import Comments from "./Comments";
-import EditText from "./postsComments/EditText";
-import Interaction from "./postsComments/Interaction";
-import CreateComment from "./postsComments/CreateComment";
+import EditText from "./EditText";
+import Interaction from "./Interaction";
+import CreateComment from "./CreateComment";
 import Link from "next/link";
 
 interface Props {

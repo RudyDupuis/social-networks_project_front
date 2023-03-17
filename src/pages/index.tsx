@@ -4,7 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import Cookies from "js-cookie";
 
-import LogoLoginRegister from "@/components/indexInscription/LogoLoginRegister";
+import Logo from "@/components/Logo";
 import InputField from "@/components/InputField";
 
 const index = () => {
@@ -18,6 +18,18 @@ const index = () => {
     router.push("/accueil");
   }
 
+  //Function that handles the cookie expiration format
+  function parseExpirationDate(expiresAt: string): Date {
+    // Remove timezone
+    const expiresAtWithoutTimeZone = expiresAt.slice(0, -6) + "Z";
+    const expiresAtDate = new Date(expiresAtWithoutTimeZone);
+
+    //Returns the expiration date with the same time zone as the current date
+    return new Date(
+      expiresAtDate.valueOf() - expiresAtDate.getTimezoneOffset() * 60000
+    );
+  }
+
   //Send to Api
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,27 +41,29 @@ const index = () => {
 
     try {
       // const res = await axios.post("/user/login", data);
-      const res = await axios.get("./BackTest/login.json");
+      const res = await axios.get("./outputBack/loginResp.json");
 
-      //create a secure cookie with a one-day expiry
-      const expires = 1;
-      Cookies.set("token", res.data.token, {
-        expires,
-        // HttpOnly: true,
-        Secure: true,
-      });
+      //Create cookies
+      const expires = parseExpirationDate(res.data.token.expires_at);
 
-      Cookies.set("role", res.data.role, {
-        expires,
-        // HttpOnly: true,
-        Secure: true,
-      });
+      const dataValue = [
+        res.data.token.token,
+        res.data.user.id,
+        res.data.user.username,
+        res.data.user.email,
+        res.data.user.avatar.url,
+        res.data.user.role,
+      ];
 
-      Cookies.set("id", res.data.id, {
-        expires,
-        // HttpOnly: true,
-        Secure: true,
-      });
+      const dataKey = ["token", "id", "username", "email", "avatar", "role"];
+
+      for (let i = 0; i < dataKey.length; i++) {
+        Cookies.set(dataKey[i], dataValue[i], {
+          expires,
+          // HttpOnly: true,
+          Secure: true,
+        });
+      }
 
       router.push("/accueil");
     } catch (error: any) {
@@ -62,7 +76,7 @@ const index = () => {
   return (
     <main className="login">
       <form onSubmit={handleLogin}>
-        <LogoLoginRegister />
+        <Logo />
 
         <InputField
           type="text"
