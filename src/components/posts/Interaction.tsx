@@ -39,7 +39,7 @@ const Interaction = ({ likes, comments, id, type, commentsEnabled }: Props) => {
 
   return (
     <div className="interaction">
-      <Likes data={likes} />
+      <Likes likes={likes} id={id} type={type} />
 
       <div className="interaction__message">
         <p>{comments}</p>

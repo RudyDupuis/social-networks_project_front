@@ -4,12 +4,16 @@ import React, { useEffect, useState } from "react";
 import Comments from "./Comments";
 import CreatePostOrComment from "./CreatePostOrComment";
 
-const CommentsList = () => {
+interface Props {
+  id: number;
+}
+
+const CommentsList = ({ id }: Props) => {
   const [commentsData, setCommentsData] = useState<Comment[]>([]);
 
   useEffect(() => {
     axios
-      .get(`./outputBack/comments.json`)
+      .get(`./outputBack/comments/comment${id}.json`)
       .then((res) => setCommentsData(res.data.data))
       .catch((err) => console.log(err));
   });

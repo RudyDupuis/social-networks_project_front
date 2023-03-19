@@ -45,7 +45,7 @@ const Posts = ({ data }: Props) => {
         />
       </div>
 
-      {displayComments && <CommentsList />}
+      {displayComments && <CommentsList id={data.id} />}
     </div>
   );
 };

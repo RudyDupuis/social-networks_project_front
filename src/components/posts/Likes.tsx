@@ -3,39 +3,55 @@ import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 
 interface Props {
-  data: string;
+  likes: string;
+  id: number;
+  type: string;
 }
 
-const Likes = ({ data }: Props) => {
+const Likes = ({ likes, id, type }: Props) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCounter, setLikeCounter] = useState(1);
 
-  //If the user liked the content, we increment the number of likes, otherwise we set it to 0
+  //Know if the user has already liked
   useEffect(() => {
-    isLiked ? setLikeCounter(1) : setLikeCounter(0);
+    axios
+      .get(`./outputBack/likes/noLike.json`)
+      .then((res) => {
+        res.data.data.map((user: any) => {
+          if (user.id.toString() === Cookies.get("id")) {
+            setIsLiked(true);
+          }
+        });
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-    const dataLike = {
-      likeCounter,
-    };
+  const handleLike = () => {
+    if (isLiked) {
+      setIsLiked(false);
+      setLikeCounter(0);
+      post();
+    } else {
+      setIsLiked(true);
+      setLikeCounter(1);
+      post();
+    }
+  };
 
-    axios.post("", dataLike, {
+  const post = () => {
+    axios.post(`${type}/${id}/${isLiked ? "like" : "unlike"}`, {
       headers: {
         Authorization: `bearer ${Cookies.get("token")}`,
       },
     });
-  }, [isLiked]);
+  };
 
   return (
     <div>
-      <p>{parseInt(data) + likeCounter}</p>
+      <p>{parseInt(likes) + likeCounter}</p>
       <i
         className={`${isLiked ? "fa-solid" : "fa-regular"} fa-heart btn-anim`}
-        onClick={() => {
-          if (isLiked) {
-            return setIsLiked(false);
-          }
-          setIsLiked(true);
-        }}
+        onClick={() => handleLike()}
       ></i>
     </div>
   );
