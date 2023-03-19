@@ -1,10 +1,10 @@
-import CreatePost from "@/components/posts/CreatePost";
 import Header from "@/components/header/Header";
 import Notifs from "@/components/accueil/Notifs";
 import Posts from "@/components/posts/Posts";
 import { Notif, Post } from "@/types/Interface";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import CreatePostOrComment from "@/components/posts/CreatePostOrComment";
 
 const accueil = () => {
   //Close the notification modal and redisplay the posts section
@@ -40,7 +40,7 @@ const accueil = () => {
       <Header />
       <section className="home">
         <section className="home__posts">
-          <CreatePost />
+          <CreatePostOrComment type={"post"} />
           <div className="home__posts--cat">
             <button
               className={subscriptionOnly ? "btn-1" : "btn-1 btn-active"}

@@ -2,7 +2,7 @@ import { Comment } from "@/types/Interface";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Comments from "./Comments";
-import CreateComment from "./CreateComment";
+import CreatePostOrComment from "./CreatePostOrComment";
 
 const CommentsList = () => {
   const [commentsData, setCommentsData] = useState<Comment[]>([]);
@@ -15,7 +15,7 @@ const CommentsList = () => {
   });
   return (
     <div className="posts__comments ">
-      <CreateComment />
+      <CreatePostOrComment type={"comment"} />
 
       {commentsData &&
         commentsData.map((comment) => (

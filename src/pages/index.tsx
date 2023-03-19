@@ -44,7 +44,8 @@ const index = () => {
       const res = await axios.get("./outputBack/loginResp.json");
 
       //Create cookies
-      const expires = parseExpirationDate(res.data.token.expires_at);
+      // const expires = parseExpirationDate(res.data.token.expires_at);
+      const expires = 1;
 
       const dataValue = [
         res.data.token.token,

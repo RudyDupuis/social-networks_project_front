@@ -2,7 +2,11 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useState } from "react";
 
-const CreatePost = () => {
+interface Props {
+  type: "comment" | "post";
+}
+
+const CreatePostOrComment = ({ type }: Props) => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -26,7 +30,7 @@ const CreatePost = () => {
         );
       }
 
-      setMessage("");
+      window.location.reload();
     } catch (err) {
       setError("Le message n'a pas pu être envoyé, veuillez réessayer");
     }
@@ -34,19 +38,21 @@ const CreatePost = () => {
 
   return (
     <div>
-      <form onSubmit={handleMessage} className="message home__posts--create">
+      <form onSubmit={handleMessage} className="create-message">
         <textarea
-          placeholder="Écrire un post ..."
+          placeholder={type === "post" ? "Écrire un post ..." : "Commenter..."}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         ></textarea>
+
         <button type="submit">
           <i className="fa-solid fa-share"></i>
         </button>
       </form>
-      <p className="message__error">{error}</p>
+
+      <p className="create-message__error">{error}</p>
     </div>
   );
 };
 
-export default CreatePost;
+export default CreatePostOrComment;

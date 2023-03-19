@@ -1,0 +1,50 @@
+.message {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+
+  @media (max-width: 500px) {
+    flex-direction: column-reverse;
+  }
+
+  &__edit {
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 500px) {
+      flex-direction: row;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .fa-pen-to-square {
+      margin-bottom: 20px;
+
+      @media (max-width: 500px) {
+        margin: 0 20px 0 0;
+      }
+    }
+  }
+
+  &__content {
+    width: 100%;
+    margin-left: 20px;
+    line-height: 1.5rem;
+    text-align: justify;
+
+    textarea {
+      min-height: 80px;
+      padding: 10px;
+
+      &:focus {
+        background: $background-1;
+      }
+    }
+
+    &--error {
+      color: $false;
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+}

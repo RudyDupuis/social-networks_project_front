@@ -1,0 +1,42 @@
+.create-message {
+  width: 100%;
+  position: relative;
+
+  textarea {
+    min-height: 100px;
+    padding: 20px;
+    background: $background-2;
+    border: 2px solid $background-2;
+
+    &:focus {
+      background: $background-1;
+    }
+  }
+
+  button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: $main;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background: $secondary;
+    }
+
+    &:active {
+      transform: translateX(10px);
+    }
+
+    i {
+      color: $background-1;
+      padding: 5px 15px;
+    }
+  }
+
+  &__error {
+    color: $false;
+  }
+}
