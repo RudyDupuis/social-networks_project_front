@@ -1,17 +1,28 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Likes from "./Likes";
 
 interface Props {
   likes: string;
   comments: string | null;
   id: number;
   type: string;
+  commentsEnabled(e: boolean): void;
 }
 
-const Interaction = ({ likes, comments, id, type }: Props) => {
-  const [isLiked, setIsLiked] = useState(false);
-  const [likeCounter, setLikeCounter] = useState(1);
+const Interaction = ({ likes, comments, id, type, commentsEnabled }: Props) => {
+  const [viewComments, setViewComments] = useState(false);
+
+  const displayComments = () => {
+    if (viewComments) {
+      setViewComments(false);
+      commentsEnabled(false);
+    } else {
+      setViewComments(true);
+      commentsEnabled(true);
+    }
+  };
 
   const reportingRequest = () => {
     const dataSignaled = {
@@ -26,38 +37,22 @@ const Interaction = ({ likes, comments, id, type }: Props) => {
     });
   };
 
-  useEffect(() => {
-    isLiked ? setLikeCounter(1) : setLikeCounter(0);
-
-    const dataLike = {
-      likeCounter,
-    };
-
-    axios.post("", dataLike, {
-      headers: {
-        Authorization: `bearer ${Cookies.get("token")}`,
-      },
-    });
-  }, [isLiked]);
-
   return (
     <div className="interaction">
-      <div>
-        <p>{parseInt(likes) + likeCounter}</p>
+      <Likes data={likes} />
+
+      <div className="interaction__message">
+        <p>{comments}</p>
         <i
-          className={`${isLiked ? "fa-solid" : "fa-regular"} fa-heart btn-anim`}
+          className={`${
+            viewComments ? "fa-solid" : "fa-regular"
+          } fa-message btn-anim`}
           onClick={() => {
-            if (isLiked) {
-              return setIsLiked(false);
-            }
-            setIsLiked(true);
+            displayComments();
           }}
         ></i>
       </div>
-      <div className="interaction__message">
-        <p>{comments}</p>
-        <i className="fa-solid fa-message"></i>
-      </div>
+
       <i
         className="fa-solid fa-flag btn-anim"
         onClick={() => reportingRequest()}

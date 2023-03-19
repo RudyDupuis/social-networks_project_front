@@ -84,6 +84,7 @@ button {
 .btn-anim {
   cursor: pointer;
   transition: 0.2s;
+  user-select: none;
 
   &:hover {
     color: $secondary;

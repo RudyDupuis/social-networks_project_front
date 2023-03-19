@@ -9,7 +9,7 @@ interface Props {
   type: string;
 }
 
-const EditText = ({ message, author, id, type }: Props) => {
+const Message = ({ message, author, id, type }: Props) => {
   const [editable, setEditable] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [messageDisplay, setMessageDisplay] = useState(message);
@@ -102,4 +102,4 @@ const EditText = ({ message, author, id, type }: Props) => {
   );
 };
 
-export default EditText;
+export default Message;

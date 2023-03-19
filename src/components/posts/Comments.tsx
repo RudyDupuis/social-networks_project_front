@@ -1,9 +1,7 @@
 import { Comment } from "@/types/Interface";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import Author from "./Author";
-import EditText from "./EditText";
+import Message from "./Message";
 import Interaction from "./Interaction";
 
 interface Props {
@@ -26,9 +24,10 @@ const Comments = ({ data }: Props) => {
           comments={null}
           id={data.id}
           type={"comment"}
+          commentsEnabled={() => {}}
         />
       </div>
-      <EditText
+      <Message
         message={data.message}
         author={data.author}
         id={data.id}
