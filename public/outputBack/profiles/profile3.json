@@ -1,0 +1,16 @@
+{
+  "message": "User fetched successfully",
+  "data": {
+    "id": 3,
+    "username": "HumorousHacker",
+    "email": "humoroushacker@gmail.com",
+    "avatar": {
+      "url": "/assets/profil3.png"
+    },
+    "role": "USER",
+    "is_banned": false,
+    "created_at": "2022-12-31T23:59:59.000+01:00",
+    "updated_at": "2023-03-18T15:30:12.000+01:00",
+    "have_subscribed": true
+  }
+}

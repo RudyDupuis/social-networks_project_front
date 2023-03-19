@@ -1,0 +1,105 @@
+{
+  "message": "Posts fetched successfully",
+  "data": [
+    {
+      "id": 1,
+      "message": "Je viens de terminer un projet passionnant qui utilise des réseaux de neurones pour la reconnaissance d'images. C'était un défi stimulant, mais je suis fier du résultat final !",
+      "author": 1,
+      "created_at": "2023-03-11T14:30:20.918+01:00",
+      "updated_at": null,
+      "user": {
+        "id": 1,
+        "username": "Moustache",
+        "email": "moustche@gmail.com",
+        "avatar": {
+          "url": "/assets/profil1.png"
+        },
+        "role": "USER",
+        "created_at": "2023-03-09T12:58:58.418+01:00",
+        "updated_at": null
+      },
+      "comments_count": "3",
+      "likes_count": "45"
+    },
+    {
+      "id": 2,
+      "message": "Aujourd'hui, j'ai réussi à optimiser le temps de chargement de mon application de manière significative. J'ai utilisé différents outils pour identifier les goulots d'étranglement et apporter des améliorations. Je suis heureux de constater que mes efforts ont porté leurs fruits !",
+      "author": 2,
+      "created_at": "2023-03-12T09:15:45.674+01:00",
+      "updated_at": null,
+      "user": {
+        "id": 2,
+        "username": "CreativeCoder",
+        "email": "creativecoder@gmail.com",
+        "avatar": {
+          "url": "/assets/profil2.png"
+        },
+        "role": "USER",
+        "created_at": "2022-05-13T10:12:00.000+01:00",
+        "updated_at": "2023-03-16T08:45:23.000+01:00"
+      },
+      "comments_count": "1",
+      "likes_count": "22"
+    },
+    {
+      "id": 3,
+      "message": "Je viens de terminer un livre incroyable sur la conception d'API REST. J'ai appris de nombreuses astuces et meilleures pratiques qui me seront très utiles dans mes projets futurs. Si vous êtes également intéressé par la conception d'API, je vous recommande vivement ce livre !",
+      "author": 3,
+      "created_at": "2023-03-14T16:10:55.821+01:00",
+      "updated_at": "2023-03-14T17:10:55.821+01:00",
+      "user": {
+        "id": 3,
+        "username": "HumorousHacker",
+        "email": "humoroushacker@gmail.com",
+        "avatar": {
+          "url": "/assets/profil3.png"
+        },
+        "role": "USER",
+        "created_at": "2022-12-31T23:59:59.000+01:00",
+        "updated_at": "2023-03-18T15:30:12.000+01:00"
+      },
+      "comments_count": "0",
+      "likes_count": "18"
+    },
+    {
+      "id": 4,
+      "message": "Je suis actuellement en train de travailler sur un projet de site web de commerce électronique. J'ai utilisé différents outils et frameworks pour faciliter le développement, notamment Bootstrap et jQuery. J'aimerais avoir votre avis sur le design du site, alors n'hésitez pas à me donner vos feedbacks.",
+      "author": 4,
+      "created_at": "2023-03-18T10:20:20.918+01:00",
+      "updated_at": null,
+      "user": {
+        "id": 4,
+        "username": "CodeQueen",
+        "email": "codequeen@gmail.com",
+        "avatar": {
+          "url": "/assets/profil4.png"
+        },
+        "role": "USER",
+        "created_at": "2023-01-15T18:23:45.000+01:00",
+        "updated_at": "2023-03-19T09:11:11.000+01:00"
+      },
+      "comments_count": "2",
+      "likes_count": "45"
+    },
+    {
+      "id": 5,
+      "message": "Je suis en train de travailler sur un nouveau projet de développement web et je me demande quelle serait la meilleure approche pour gérer la pagination des données côté client. Des suggestions ?",
+      "author": 1,
+      "created_at": "2023-03-19T15:23:12.091+01:00",
+      "updated_at": null,
+      "user": {
+        "id": 1,
+        "username": "Moustache",
+        "email": "moustche@gmail.com",
+        "avatar": {
+          "url": "/assets/profil1.png"
+        },
+        "role": "USER",
+        "created_at": "2023-03-09T12:58:58.418+01:00",
+        "updated_at": null
+      },
+      "comments_count": "1",
+      "likes_count": "100"
+    }
+  ]
+}

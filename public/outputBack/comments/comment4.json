@@ -1,0 +1,45 @@
+{
+  "message": "Comments fetched successfully",
+  "data": [
+    {
+      "id": 1,
+      "message": "Félicitations pour votre projet de site web de commerce électronique ! L'utilisation de Bootstrap et jQuery peut certainement faciliter le développement, mais le plus important est le design. Le design est crucial pour l'expérience utilisateur et pour générer des ventes. Si vous souhaitez des commentaires sur le design de votre site, n'hésitez pas à publier des captures d'écran ou un lien vers votre site web. Bonne chance pour la suite de votre projet !",
+      "author": 3,
+      "post_id": 4,
+      "created_at": "2023-03-19T12:10:00.000+01:00",
+      "updated_at": "2023-03-19T12:12:00.000+01:00",
+      "user": {
+        "id": 3,
+        "username": "HumorousHacker",
+        "email": "humoroushacker@gmail.com",
+        "avatar": {
+          "url": "/assets/profil3.png"
+        },
+        "role": "USER",
+        "created_at": "2022-12-31T23:59:59.000+01:00",
+        "updated_at": "2023-03-18T15:30:12.000+01:00"
+      },
+      "likes_count": "2"
+    },
+    {
+      "id": 2,
+      "message": "Travailler sur un projet de site web de commerce électronique est un défi passionnant. Je suis sûr que l'utilisation de Bootstrap et jQuery facilitera le développement de votre site. En ce qui concerne le design, il est important de garder à l'esprit les besoins des utilisateurs. Assurez-vous que le design soit simple, facile à naviguer et que les éléments clés soient bien en évidence. N'hésitez pas à partager votre travail pour obtenir des commentaires et des suggestions constructives de la part d'autres développeurs. Bonne chance !",
+      "author": 4,
+      "post_id": 1,
+      "created_at": "2023-03-19T12:10:00.000+01:00",
+      "updated_at": "2023-03-19T12:12:00.000+01:00",
+      "user": {
+        "id": 4,
+        "username": "CodeQueen",
+        "email": "codequeen@gmail.com",
+        "avatar": {
+          "url": "/assets/profil4.png"
+        },
+        "role": "USER",
+        "created_at": "2023-01-15T18:23:45.000+01:00",
+        "updated_at": "2023-03-19T09:11:11.000+01:00"
+      },
+      "likes_count": "1"
+    }
+  ]
+}

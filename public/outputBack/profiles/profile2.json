@@ -1,0 +1,16 @@
+{
+  "message": "User fetched successfully",
+  "data": {
+    "id": 2,
+    "username": "CreativeCoder",
+    "email": "creativecoder@gmail.com",
+    "avatar": {
+      "url": "/assets/profil2.png"
+    },
+    "role": "USER",
+    "is_banned": false,
+    "created_at": "2022-05-13T10:12:00.000+01:00",
+    "updated_at": "2023-03-16T08:45:23.000+01:00",
+    "have_subscribed": true
+  }
+}

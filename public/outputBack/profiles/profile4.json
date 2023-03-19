@@ -1,0 +1,16 @@
+{
+  "message": "User fetched successfully",
+  "data": {
+    "id": 4,
+    "username": "CodeQueen",
+    "email": "codequeen@gmail.com",
+    "avatar": {
+      "url": "/assets/profil4.png"
+    },
+    "role": "USER",
+    "is_banned": false,
+    "created_at": "2023-01-15T18:23:45.000+01:00",
+    "updated_at": "2023-03-19T09:11:11.000+01:00",
+    "have_subscribed": false
+  }
+}

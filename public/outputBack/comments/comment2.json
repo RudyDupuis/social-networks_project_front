@@ -1,0 +1,25 @@
+{
+  "message": "Comments fetched successfully",
+  "data": [
+    {
+      "id": 1,
+      "message": "Bravo pour votre réussite dans l'optimisation du temps de chargement de votre application ! Cela montre que vous avez une solide compréhension des outils et techniques nécessaires pour améliorer les performances de votre application. Il est gratifiant de voir vos efforts porter leurs fruits et d'obtenir des résultats concrets. Continuez ainsi !",
+      "author": 1,
+      "post_id": 2,
+      "created_at": "2023-03-19T12:10:00.000+01:00",
+      "updated_at": "2023-03-19T12:12:00.000+01:00",
+      "user": {
+        "id": 1,
+        "username": "Moustache",
+        "email": "moustche@gmail.com",
+        "avatar": {
+          "url": "/assets/profil1.png"
+        },
+        "role": "USER",
+        "created_at": "2023-03-09T12:58:58.418+01:00",
+        "updated_at": null
+      },
+      "likes_count": "89"
+    }
+  ]
+}

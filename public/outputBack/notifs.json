@@ -1,0 +1,56 @@
+{
+  "message": "Notifs fetched successfully",
+  "data": [
+    {
+      "id": 1,
+      "message": "CreativeCoder a aimé votre message",
+      "author": 2,
+      "created_at": "2023-03-20T12:58:58.688+01:00",
+      "user": {
+        "id": 2,
+        "username": "CreativeCoder",
+        "email": "creativecoder@gmail.com",
+        "avatar": {
+          "url": "/assets/profil2.png"
+        },
+        "role": "USER",
+        "created_at": "2022-05-13T10:12:00.000+01:00",
+        "updated_at": "2023-03-16T08:45:23.000+01:00"
+      }
+    },
+    {
+      "id": 2,
+      "message": "HumorousHacker a commenté votre post",
+      "author": 3,
+      "created_at": "2023-03-09T12:58:58.688+01:00",
+      "user": {
+        "id": 3,
+        "username": "HumorousHacker",
+        "email": "humoroushacker@gmail.com",
+        "avatar": {
+          "url": "/assets/profil3.png"
+        },
+        "role": "USER",
+        "created_at": "2022-12-31T23:59:59.000+01:00",
+        "updated_at": "2023-03-18T15:30:12.000+01:00"
+      }
+    },
+    {
+      "id": 3,
+      "message": "CreativeCoder à aimé votre post",
+      "author": 2,
+      "created_at": "2023-03-09T12:58:58.688+01:00",
+      "user": {
+        "id": 2,
+        "username": "CreativeCoder",
+        "email": "creativecoder@gmail.com",
+        "avatar": {
+          "url": "/assets/profil2.png"
+        },
+        "role": "USER",
+        "created_at": "2022-05-13T10:12:00.000+01:00",
+        "updated_at": "2023-03-16T08:45:23.000+01:00"
+      }
+    }
+  ]
+}

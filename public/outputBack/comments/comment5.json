@@ -1,0 +1,25 @@
+{
+  "message": "Comments fetched successfully",
+  "data": [
+    {
+      "id": 1,
+      "message": "C'est génial que vous cherchiez la meilleure approche pour gérer la pagination des données côté client dans votre projet de développement web. L'utilisation de la pagination peut être très utile pour améliorer les performances de votre application et rendre l'expérience utilisateur plus fluide.",
+      "author": 1,
+      "post_id": 5,
+      "created_at": "2023-03-19T12:10:00.000+01:00",
+      "updated_at": "2023-03-19T12:12:00.000+01:00",
+      "user": {
+        "id": 1,
+        "username": "Moustache",
+        "email": "moustche@gmail.com",
+        "avatar": {
+          "url": "/assets/profil1.png"
+        },
+        "role": "USER",
+        "created_at": "2023-03-09T12:58:58.418+01:00",
+        "updated_at": null
+      },
+      "likes_count": "89"
+    }
+  ]
+}

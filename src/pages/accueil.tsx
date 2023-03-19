@@ -23,9 +23,9 @@ const accueil = () => {
   const [subscriptionOnly, setSubscriptionOnly] = useState(false);
 
   useEffect(() => {
-    let uri = subscriptionOnly ? "homePostsSubscribes" : "homePostsAll";
+    let uri = subscriptionOnly ? "postsSubscriptions" : "postsGeneral";
     axios
-      .get(`./BackTest/${uri}.json`)
+      .get(`./outputBack/posts/${uri}.json`)
       .then((res) => setPostsData(res.data.data))
       .catch((err) => console.log(err));
 
