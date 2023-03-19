@@ -41,6 +41,7 @@ const accueil = () => {
       <section className="home">
         <section className="home__posts">
           <CreatePostOrComment type={"post"} />
+
           <div className="home__posts--cat">
             <button
               className={subscriptionOnly ? "btn-1" : "btn-1 btn-active"}
@@ -55,17 +56,21 @@ const accueil = () => {
               Abonnements
             </button>
           </div>
+
           <div className="home__posts--list">
             {postsData.map((post) => (
               <Posts key={post.id} data={post} />
             ))}
           </div>
         </section>
+
         <section className="home__notifs">
           <i className="fa-solid fa-circle-xmark" onClick={closeNotifs}></i>
+
           <h2>
             <i className="fa-solid fa-bell"></i> Mes notifications
           </h2>
+
           <div className="home__notifs--list">
             <div>
               {notifsData.map((notif) => (

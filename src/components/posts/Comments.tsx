@@ -10,8 +10,8 @@ interface Props {
 
 const Comments = ({ data }: Props) => {
   return (
-    <div className="posts__content comments">
-      <div className="posts__content--top">
+    <div className="comments">
+      <div className="comments__top">
         <Author
           id={data.user.id}
           avatar={data.user.avatar.url}

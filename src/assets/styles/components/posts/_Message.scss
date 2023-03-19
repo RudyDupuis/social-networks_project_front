@@ -36,6 +36,10 @@
       min-height: 80px;
       padding: 10px;
 
+      @media (max-width: 500px) {
+        min-height: 200px;
+      }
+
       &:focus {
         background: $background-1;
       }
