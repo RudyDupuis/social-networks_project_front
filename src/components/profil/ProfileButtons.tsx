@@ -1,9 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface Props {
-  isFollowed: boolean;
+  isFollowed: boolean | undefined;
   bannedUser: boolean;
   currentUserIsAdmin: boolean;
   profileId: number;
@@ -24,7 +24,7 @@ const ProfileButtons = ({
       : setCurrentUserFollows(true);
 
     axios
-      .put(
+      .post(
         `/user/${profileId}/${
           currentUserFollows ? "subscribe" : "unsubscribe"
         }`,
@@ -45,7 +45,7 @@ const ProfileButtons = ({
   const banish = () => {
     isBanned ? setIsBanned(false) : setIsBanned(true);
     axios
-      .put(`/user/${profileId}/${isBanned ? "banish" : "unbanish"}`, {
+      .post(`/user/${profileId}/${isBanned ? "banish" : "unbanish"}`, {
         headers: {
           Authorization: `bearer ${Cookies.get("token")}`,
         },
@@ -55,6 +55,12 @@ const ProfileButtons = ({
       });
   };
 
+  //Change button state if props change
+  useEffect(() => {
+    setCurrentUserFollows(isFollowed);
+    setIsBanned(bannedUser);
+  }, [isFollowed, bannedUser]);
+
   return (
     <div className="profil__infos--buttons">
       <button className="btn-2" onClick={() => follow()}>
@@ -63,7 +69,7 @@ const ProfileButtons = ({
 
       {currentUserIsAdmin && (
         <button className="btn-2" onClick={() => banish()}>
-          {bannedUser ? "Débannir" : "Bannir"}
+          {isBanned ? "Débannir" : "Bannir"}
         </button>
       )}
     </div>

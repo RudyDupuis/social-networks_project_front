@@ -1,0 +1,25 @@
+{
+  "message": "Posts fetched successfully",
+  "data": [
+    {
+      "id": 4,
+      "message": "Je suis actuellement en train de travailler sur un projet de site web de commerce électronique. J'ai utilisé différents outils et frameworks pour faciliter le développement, notamment Bootstrap et jQuery. J'aimerais avoir votre avis sur le design du site, alors n'hésitez pas à me donner vos feedbacks.",
+      "author": 4,
+      "created_at": "2023-03-18T10:20:20.918+01:00",
+      "updated_at": null,
+      "user": {
+        "id": 4,
+        "username": "CodeQueen",
+        "email": "codequeen@gmail.com",
+        "avatar": {
+          "url": "/assets/profil4.png"
+        },
+        "role": "USER",
+        "created_at": "2023-01-15T18:23:45.000+01:00",
+        "updated_at": "2023-03-19T09:11:11.000+01:00"
+      },
+      "comments_count": "2",
+      "likes_count": "45"
+    }
+  ]
+}

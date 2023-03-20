@@ -1,6 +1,6 @@
 import Header from "@/components/header/Header";
-import Posts from "@/components/posts/Posts";
 import ProfileButtons from "@/components/profil/ProfileButtons";
+import ProfilePosts from "@/components/profil/ProfilePosts";
 import { UserProfile } from "@/types/Interface";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -86,11 +86,7 @@ const profil = () => {
             />
           </div>
 
-          {/* <div className="profil__posts">
-            {userData.posts.map((post) => (
-              <Posts key={post.id} data={post} />
-            ))}
-          </div> */}
+          <ProfilePosts userId={userData.id} />
         </section>
       ) : (
         <h2 className="profil-error">Profil non trouvé</h2>

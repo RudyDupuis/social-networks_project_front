@@ -8,7 +8,7 @@
       "url": "/assets/profil3.png"
     },
     "role": "USER",
-    "is_banned": false,
+    "is_banned": true,
     "created_at": "2022-12-31T23:59:59.000+01:00",
     "updated_at": "2023-03-18T15:30:12.000+01:00",
     "have_subscribed": true
