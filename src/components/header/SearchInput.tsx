@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ProfileLinkButton from "../ProfileLinkButton";
-import { UserProfileLight } from "@/types/Interface";
+import { UserProfile } from "@/types/Interface";
 
 const SearchInput = () => {
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [usersData, setUsersData] = useState<UserProfileLight[]>([]);
+  const [usersData, setUsersData] = useState<UserProfile[]>([]);
 
   //Prevents the modal from disappearing if you click on a profile
   const handleBlur = (e: any) => {

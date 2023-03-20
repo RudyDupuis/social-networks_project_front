@@ -1,5 +1,6 @@
 import Header from "@/components/header/Header";
 import Posts from "@/components/posts/Posts";
+import ProfileButtons from "@/components/profil/ProfileButtons";
 import { UserProfile } from "@/types/Interface";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -16,11 +17,10 @@ const profil = () => {
       url: "",
     },
     role: "",
-    isbanned: false,
+    is_banned: false,
     created_at: "",
-    updated_at: null,
-    posts: [],
-    posts_count: "",
+    updated_at: "",
+    have_subscribed: true,
   });
 
   //Get profile id for create profile page
@@ -33,7 +33,7 @@ const profil = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`./BackTest/profil${id}.json`)
+        .get(`./outputBack/profiles/profile${id}.json`)
         .then((res) => {
           setDisplayProfile(true);
           setUserData(res.data.data);
@@ -53,54 +53,6 @@ const profil = () => {
       setIsAdmin(true);
     }
   }, []);
-
-  //Banish
-  const [userBanned, setUserBanned] = useState(userData.isbanned);
-
-  const banish = () => {
-    let value = true;
-    if (userBanned) {
-      value = false;
-    }
-    setUserBanned(value);
-
-    const data = {
-      isbanned: value,
-    };
-    axios
-      .put("" + id, data, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  //Follow
-  const [userFollow, setUserFollow] = useState(false);
-
-  const follow = () => {
-    let value = true;
-    if (userFollow) {
-      value = false;
-    }
-    setUserFollow(value);
-
-    const data = {
-      follow: value,
-    };
-    axios
-      .put("" + id, data, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   return (
     <main>
@@ -125,23 +77,20 @@ const profil = () => {
                 {isAdmin && <p className="profil-mail">{userData.email}</p>}
               </div>
             </div>
-            <div className="profil__infos--buttons">
-              <button className="btn-2" onClick={() => follow()}>
-                {userFollow ? "Ne plus suivre" : "Suivre"}
-              </button>
-              {isAdmin && (
-                <button className="btn-2" onClick={() => banish()}>
-                  {userBanned ? "Débannir" : "Bannir"}
-                </button>
-              )}
-            </div>
+
+            <ProfileButtons
+              isFollowed={userData.have_subscribed}
+              bannedUser={userData.is_banned}
+              currentUserIsAdmin={isAdmin}
+              profileId={userData.id}
+            />
           </div>
 
-          <div className="profil__posts">
+          {/* <div className="profil__posts">
             {userData.posts.map((post) => (
               <Posts key={post.id} data={post} />
             ))}
-          </div>
+          </div> */}
         </section>
       ) : (
         <h2 className="profil-error">Profil non trouvé</h2>

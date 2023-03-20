@@ -1,4 +1,4 @@
-export interface accountProfile {
+export interface currentUserProfile {
     id: number;
     username: string;
     email: string;
@@ -6,11 +6,9 @@ export interface accountProfile {
       url : string;
     };
     role: string;
+    is_banned : boolean;
     created_at: string;
     updated_at: string | null;
-    posts: Post[];
-    posts_count: string;
-    subscriptions: UserProfile[];
   }
 
 export interface UserProfile {
@@ -21,20 +19,11 @@ export interface UserProfile {
       url: string;
     };
     role: string;
-    isbanned : false | true,
+    is_banned : boolean,
     created_at: string;
     updated_at: string | null;
-    posts: Post[];
-    posts_count: string;
+    have_subscribed: boolean
   }
-  
-  export interface UserProfileLight {
-    id: number;
-    username: string;
-    avatar: {
-      url: string;
-    };
-  } 
 
   export interface Post {
     id: number;
@@ -43,7 +32,6 @@ export interface UserProfile {
     created_at: string;
     updated_at: string | null;
     user: UserProfile;
-    comments: Comment[];
     comments_count: string;
     likes_count: string;
   }
