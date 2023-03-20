@@ -1,0 +1,50 @@
+.header-search {
+  width: 20vw;
+  min-width: 200px;
+  position: relative;
+
+  input {
+    background: transparent;
+  }
+
+  @media (max-width: 650px) {
+    position: absolute;
+    z-index: 5;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__results {
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+    border: 2px solid $main;
+
+    .profil-link-button {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      background: $background-2;
+
+      div {
+        display: flex;
+        align-items: center;
+
+        p {
+          margin-left: 10px;
+        }
+      }
+
+      &:hover {
+        background: $secondary;
+      }
+
+      &:active {
+        transform: translateX(-10px);
+      }
+    }
+  }
+}

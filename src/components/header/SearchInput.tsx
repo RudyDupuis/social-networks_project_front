@@ -12,31 +12,28 @@ const SearchInput = () => {
   const handleBlur = (e: any) => {
     const isProfileLinkButton =
       e.relatedTarget &&
-      e.relatedTarget.className.includes("results-container");
+      e.relatedTarget.className.includes("profil-link-button");
 
     if (!isProfileLinkButton) {
       setSearchFocused(false);
     }
   };
 
+  //Fetch data
   useEffect(() => {
-    const data = {
-      searchValue,
-    };
-
     // axios
-    //   .post(`./BackTest/searchInput.json`, data)
+    //   .get(`/users/${searchValue}`)
     //   .then((res) => setUsersData(res.data.data))
     //   .catch((err) => console.log(err));
 
     axios
-      .get(`./BackTest/searchInput.json`)
+      .get(`./outputBack/headerSearch.json`)
       .then((res) => setUsersData(res.data.data))
       .catch((err) => console.log(err));
   }, [searchValue]);
 
   return (
-    <div className="header__right--search">
+    <div className="header-search">
       <div className="input-1">
         <input
           type="text"
@@ -47,13 +44,14 @@ const SearchInput = () => {
         />
         <i className="fa-solid fa-magnifying-glass"></i>
       </div>
+
       <div
-        className="results-container"
+        className="header-search__results"
         style={{ display: searchFocused ? "block" : "none" }}
       >
         {usersData &&
           usersData.map((user) => (
-            <ProfileLinkButton key={user.id} data={user} />
+            <ProfileLinkButton key={user.id} user={user} />
           ))}
       </div>
     </div>

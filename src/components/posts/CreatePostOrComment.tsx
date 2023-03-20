@@ -41,6 +41,7 @@ const CreatePostOrComment = ({ type }: Props) => {
       <form onSubmit={handleMessage} className="create-message">
         <textarea
           placeholder={type === "post" ? "Écrire un post ..." : "Commenter..."}
+          maxLength={300}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         ></textarea>

@@ -38,11 +38,12 @@ const accueil = () => {
   return (
     <main>
       <Header />
+
       <section className="home">
         <section className="home__posts">
           <CreatePostOrComment type={"post"} />
 
-          <div className="home__posts--cat">
+          <div className="home__posts--buttons">
             <button
               className={subscriptionOnly ? "btn-1" : "btn-1 btn-active"}
               onClick={() => setSubscriptionOnly(false)}
