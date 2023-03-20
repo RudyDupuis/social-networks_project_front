@@ -10,7 +10,7 @@ interface Props {
 
 const Likes = ({ likes, id, type }: Props) => {
   const [isLiked, setIsLiked] = useState(false);
-  const [likeCounter, setLikeCounter] = useState(1);
+  const [likeCounter, setLikeCounter] = useState(0);
 
   //Know if the user has already liked
   useEffect(() => {
@@ -18,8 +18,9 @@ const Likes = ({ likes, id, type }: Props) => {
       .get(`./outputBack/likes/noLike.json`)
       .then((res) => {
         res.data.data.map((user: any) => {
-          if (user.id.toString() === Cookies.get("id")) {
+          if (user.user_id.toString() === Cookies.get("id")) {
             setIsLiked(true);
+            setLikeCounter(1);
           }
         });
       })
@@ -39,11 +40,11 @@ const Likes = ({ likes, id, type }: Props) => {
   };
 
   const post = () => {
-    axios.post(`${type}/${id}/${isLiked ? "like" : "unlike"}`, {
-      headers: {
-        Authorization: `bearer ${Cookies.get("token")}`,
-      },
-    });
+    // axios.post(`${type}/${id}/${isLiked ? "like" : "unlike"}`, {
+    //   headers: {
+    //     Authorization: `bearer ${Cookies.get("token")}`,
+    //   },
+    // });
   };
 
   return (
