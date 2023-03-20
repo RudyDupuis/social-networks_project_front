@@ -1,10 +1,10 @@
-import { UserProfileLight } from "@/types/Interface";
+import { UserProfile } from "@/types/Interface";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 interface Props {
-  user: UserProfileLight;
+  user: UserProfile;
 }
 
 const ProfileLinkButton = ({ user }: Props) => {
