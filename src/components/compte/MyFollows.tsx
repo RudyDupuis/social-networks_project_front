@@ -3,16 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-interface Props {
-  data: UserProfile[];
-}
-
-const MyFollows = ({ data }: Props) => {
+const MyFollows = () => {
   return (
     <div className="my-follows">
       <h1>Mes suivis</h1>
 
-      {data.map((profil) => (
+      {/* {data.map((profil) => (
         <Link
           key={profil.id}
           href={{ pathname: "/profil", query: { id: profil.id } }}
@@ -34,7 +30,7 @@ const MyFollows = ({ data }: Props) => {
             <i className="fa-solid fa-angle-right"></i>
           </div>
         </Link>
-      ))}
+      ))} */}
     </div>
   );
 };

@@ -21,30 +21,6 @@
       flex-direction: column;
     }
 
-    &--infos {
-      display: flex;
-      align-items: center;
-
-      div {
-        margin-left: 20px;
-
-        .profil-pseudo {
-          font-weight: bold;
-          font-size: 1.2rem;
-
-          @media (max-width: 500px) {
-            font-size: 1rem;
-          }
-        }
-
-        .profil-mail {
-          @media (max-width: 500px) {
-            font-size: 0.8rem;
-          }
-        }
-      }
-    }
-
     i {
       font-size: 1.5rem;
 

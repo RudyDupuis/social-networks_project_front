@@ -17,9 +17,8 @@ const accueil = () => {
   };
 
   //Fetch data
-  const [notifsData, setNotifsData] = useState<Notif[]>([]);
+  //Posts
   const [postsData, setPostsData] = useState<Post[]>([]);
-
   const [subscriptionOnly, setSubscriptionOnly] = useState(false);
 
   useEffect(() => {
@@ -28,12 +27,20 @@ const accueil = () => {
       .get(`./outputBack/posts/${uri}.json`)
       .then((res) => setPostsData(res.data.data))
       .catch((err) => console.log(err));
+  }, [subscriptionOnly]);
 
+  //Notifs
+  const [notifsData, setNotifsData] = useState<Notif[]>([]);
+  const [notifRemoved, setNotifRemoved] = useState(false);
+
+  useEffect(() => {
     axios
-      .get("./BackTest/homeNotifs.json")
+      .get("./outputBack/notifs.json")
       .then((res) => setNotifsData(res.data.data))
       .catch((err) => console.log(err));
-  }, [subscriptionOnly]);
+
+    setNotifRemoved(false);
+  }, [notifRemoved]);
 
   return (
     <main>
@@ -68,14 +75,16 @@ const accueil = () => {
         <section className="home__notifs">
           <i className="fa-solid fa-circle-xmark" onClick={closeNotifs}></i>
 
-          <h2>
-            <i className="fa-solid fa-bell"></i> Mes notifications
-          </h2>
+          <h2>Mes notifications</h2>
 
           <div className="home__notifs--list">
             <div>
               {notifsData.map((notif) => (
-                <Notifs key={notif.id} data={notif} />
+                <Notifs
+                  key={notif.id}
+                  data={notif}
+                  isDeleted={(e: boolean) => setNotifRemoved(true)}
+                />
               ))}
             </div>
           </div>

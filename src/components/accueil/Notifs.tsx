@@ -4,25 +4,22 @@ import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import DateFormat from "../DateFormat";
 
 interface Props {
   data: Notif;
+  isDeleted(e: boolean): void;
 }
 
-const Notifs = ({ data }: Props) => {
-  function formatDate(date: string): string {
-    const [year, month, day] = date.substr(0, 10).split("-");
-    const [hour, minute] = date.substr(11, 5).split(":");
-    return `${day}/${month}/${year.substr(2)} à ${hour} h ${minute}`;
-  }
-
+const Notifs = ({ data, isDeleted }: Props) => {
   const deleteNotif = () => {
     axios
-      .delete("", {
+      .post("", {
         headers: {
           Authorization: `bearer ${Cookies.get("token")}`,
         },
       })
+      .then(() => isDeleted(true))
       .catch((err) => console.log(err));
   };
 
@@ -42,7 +39,9 @@ const Notifs = ({ data }: Props) => {
       </Link>
       <div>
         <p>{data.message}</p>
-        <p className="notification__date">{formatDate(data.created_at)}</p>
+        <p className="notification__date">
+          <DateFormat date={data.created_at} />
+        </p>
       </div>
       <i
         className="fa-solid fa-circle-xmark btn-anim"

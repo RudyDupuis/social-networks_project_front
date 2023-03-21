@@ -25,7 +25,7 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="0.37222224"
-     inkscape:cx="-390.8955"
+     inkscape:cx="-482.23878"
      inkscape:cy="565.52236"
      inkscape:window-width="1920"
      inkscape:window-height="991"
@@ -64,6 +64,15 @@
      id="layer1"><path
        id="circle3775"
        clip-path="none"
-       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:11.1308;stroke-opacity:1"
-       d="M 757.61133 485.26953 A 76.775711 76.775711 0 0 0 680.83594 562.04492 A 76.775711 76.775711 0 0 0 712.26367 623.75781 A 115.16357 76.775711 0 0 0 642.44922 694.26953 A 115.16357 76.775711 0 0 0 757.61133 771.04492 A 115.16357 76.775711 0 0 0 872.77539 694.26953 A 115.16357 76.775711 0 0 0 803.00391 623.72461 A 76.775711 76.775711 0 0 0 834.38672 562.04492 A 76.775711 76.775711 0 0 0 757.61133 485.26953 z "
-       inkscape:label="icon_compte" /></g></svg>
+       style="fill:#344d59;fill-opacity:1;stroke:none;stroke-width:15.5257;stroke-opacity:1"
+       d="m -521.39551,541.68744 a 107.0899,107.0899 0 0 0 -107.08945,107.08946 107.0899,107.0899 0 0 0 43.83668,86.07966 160.63486,107.0899 0 0 0 -97.38005,98.35264 160.63486,107.0899 0 0 0 160.63282,107.08945 160.63486,107.0899 0 0 0 160.63554,-107.08945 160.63486,107.0899 0 0 0 -97.32011,-98.39895 107.0899,107.0899 0 0 0 43.77403,-86.03335 107.0899,107.0899 0 0 0 -107.08946,-107.08946 z"
+       inkscape:label="icon_compte" /><rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:3.68014"
+       id="rect2107"
+       width="454.02982"
+       height="454.02982"
+       x="-748.40906"
+       y="513.97815"
+       inkscape:export-filename="..\..\..\public\assets\profil-picto.png"
+       inkscape:export-xdpi="25.16"
+       inkscape:export-ydpi="25.16" /></g></svg>
