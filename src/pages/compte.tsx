@@ -36,13 +36,25 @@ const Compte = () => {
   const [section, setSection] = useState<string>("EditProfil");
 
   const handleSectionChange = (newSection: string) => {
-    //If the window width is less than 1000, add a class to create a modal to the section
-    window.innerWidth < 1000 &&
-      (
-        document.querySelector(".account__section") as HTMLElement
-      ).classList.add("account__section--open");
+    if (window.innerWidth < 1000) {
+      modal(true);
+    }
 
     setSection(newSection);
+  };
+
+  const modal = (open: boolean) => {
+    const section = document.querySelector(".account__section") as HTMLElement;
+    const buttons = document.querySelector(".account__buttons") as HTMLElement;
+
+    if (open) {
+      section.classList.add("account__section--open");
+      buttons.style.display = "none";
+      return;
+    }
+
+    section.classList.remove("account__section--open");
+    buttons.style.display = "block";
   };
 
   return (
@@ -83,11 +95,7 @@ const Compte = () => {
           <div className="account__section">
             <i
               className="fa-solid fa-circle-xmark"
-              onClick={() =>
-                (
-                  document.querySelector(".account__section") as HTMLElement
-                ).classList.remove("account__section--open")
-              }
+              onClick={() => modal(false)}
             ></i>
             {(() => {
               switch (section) {
