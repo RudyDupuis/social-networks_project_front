@@ -15,7 +15,18 @@
     margin-bottom: 40px;
   }
 
+  span {
+    font-size: 0.7rem;
+  }
+
   .input-1 {
     margin-bottom: 20px;
+  }
+
+  &__instructions {
+    color: $false;
+    text-align: center;
+    margin-top: 10px;
+    white-space: pre-wrap;
   }
 }

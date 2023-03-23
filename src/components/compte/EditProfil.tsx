@@ -1,33 +1,156 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import InputField from "../InputField";
 
 const EditProfil = () => {
+  const [instructions, setInstructions] = useState("");
+  const [username, setUsername] = useState("");
+  const [mail, setMail] = useState("");
+  const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState<File | null | "badFormat">(null);
+
+  //Check if the input information is correct
+  const dataProcessing = (
+    username: string | null,
+    mail: string | null,
+    password: string | null,
+    avatar: File | null | "badFormat"
+  ) => {
+    const mailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[\S]{8,}$/;
+    const usernameLengthMin = 5;
+    const usernameLengthMax = 15;
+    let instructionsList = [];
+
+    if (username) {
+      if (
+        username.length < usernameLengthMin ||
+        username.length > usernameLengthMax
+      ) {
+        instructionsList.push("Le pseudo doit faire entre 5 et 15 caractères.");
+      }
+    }
+
+    if (mail && !mailRegex.test(mail)) {
+      instructionsList.push("Le mail n'est pas correct.");
+    }
+
+    if (avatar === "badFormat") {
+      instructionsList.push("L'image sélectionnée doit faire 119px par 119px.");
+    }
+
+    if (password && !passwordRegex.test(password)) {
+      instructionsList.push(
+        "Le mot de passe doit contenir 8 caractères dont une majuscule et un chiffre."
+      );
+    }
+
+    setInstructions(instructionsList.join("\n\n"));
+
+    if (instructionsList.length === 0) {
+      return {
+        username,
+        mail,
+        password,
+        avatar,
+      };
+    }
+  };
+
+  //check that the loaded image is a 119x119 pixel PNG
+  function handleFileChange(e: any) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function () {
+      const image = new Image();
+      image.onload = function () {
+        if (image.width !== 119 || image.height !== 119) {
+          setInstructions("L'image sélectionnée doit faire 119px par 119px.");
+          setAvatar("badFormat");
+        } else {
+          setAvatar(e.target.value);
+        }
+      };
+      image.src = reader.result as string;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+
+  //Send to Api
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const data = dataProcessing(username, mail, password, avatar);
+
+    if (data) {
+      console.log(data);
+
+      try {
+        const res = await axios.post("/user/update", data);
+
+        setInstructions("Votre profil à été mis à jour !");
+      } catch (error: any) {
+        if (error.response.status === 409) {
+          setInstructions(
+            "Ce pseudo ou cette adresse e-mail est déjà utilisé."
+          );
+        } else {
+          setInstructions("Une erreur s'est produite, veuillez réessayer.");
+        }
+      }
+    }
+  };
+
   return (
-    <form className="edit-profil">
+    <form className="edit-profil" onSubmit={handleRegister}>
       <h1>Modifier mon profil</h1>
 
-      <div className="input-1">
-        <input type="text" placeholder="Pseudo" />
-        <i className="fa-solid fa-user"></i>
-      </div>
+      <InputField
+        type="text"
+        placeholder="Pseudo"
+        required={false}
+        onChange={(e: any) => setUsername(e.target.value)}
+        icon="user"
+      />
+
+      <InputField
+        type="mail"
+        placeholder="Mail"
+        required={false}
+        onChange={(e: any) => setMail(e.target.value)}
+        icon="envelope"
+      />
+
+      <label htmlFor="profil-picture">
+        Photo de profil <span>(Png de 119px par 119px)</span>
+      </label>
 
       <div className="input-1">
-        <input type="mail" placeholder="Mail" />
-        <i className="fa-solid fa-envelope"></i>
-      </div>
-
-      <label htmlFor="profil-picture">Photo de profil</label>
-
-      <div className="input-1">
-        <input type="file" id="profil-picture" />
+        <input
+          type="file"
+          id="profil-picture"
+          onChange={(e: any) => {
+            handleFileChange(e);
+          }}
+          accept=".png"
+        />
         <i className="fa-solid fa-camera"></i>
       </div>
 
-      <div className="input-1">
-        <input type="password" placeholder="Mot de passe" />
-        <i className="fa-solid fa-lock"></i>
-      </div>
+      <InputField
+        type="password"
+        placeholder="Mot de passe"
+        required={false}
+        onChange={(e: any) => setPassword(e.target.value)}
+        icon="lock"
+      />
 
       <input type="submit" value="Sauvegarder" className="btn-1" />
+      <p className="edit-profil__instructions">{instructions}</p>
     </form>
   );
 };

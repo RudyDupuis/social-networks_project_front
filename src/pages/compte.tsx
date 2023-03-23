@@ -32,9 +32,9 @@ const Compte = () => {
     }
   }, []);
 
+  //Function to change the displayed section
   const [section, setSection] = useState<string>("EditProfil");
 
-  //Function to change the displayed section
   const handleSectionChange = (newSection: string) => {
     //If the window width is less than 1000, add a class to create a modal to the section
     window.innerWidth < 1000 &&

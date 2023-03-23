@@ -27,7 +27,7 @@ const inscription = () => {
     let instructionsList = [];
 
     if (
-      username.length < usernameLengthMin &&
+      username.length < usernameLengthMin ||
       username.length > usernameLengthMax
     ) {
       instructionsList.push("Le pseudo doit faire entre 5 et 15 caractères.");
