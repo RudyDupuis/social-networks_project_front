@@ -58,6 +58,20 @@ const inscription = () => {
     }
   };
 
+  //Api Error
+  const handleApiError = (error: any) => {
+    if (error.response.status === 409) {
+      if (error.response.data.message === "This email is already taken") {
+        return "Cette adresse mail est déjà utilisée.";
+      }
+      if (error.response.data.message === "This username is already taken") {
+        return "Ce pseudo est déjà utilisé.";
+      }
+      return "Ce pseudo ou cette adresse mail est déjà utilisé.";
+    }
+    return `Une erreur ${error.reponse.status} s'est produite.`;
+  };
+
   //Send to Api
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,17 +82,11 @@ const inscription = () => {
       try {
         const res = await axios.post("/user/create", data);
 
-        setInstructions("Compte créé ! Veuillez vous connecter");
-      } catch (error: any) {
-        if (error.response.status === 409) {
-          setInstructions(
-            "Ce pseudo ou cette adresse e-mail est déjà utilisé."
-          );
-        } else {
-          setInstructions(
-            "Une erreur s'est produite lors de la création de votre compte."
-          );
+        if (res.status === 201) {
+          setInstructions("Compte créé ! Veuillez vous connecter");
         }
+      } catch (error: any) {
+        setInstructions(handleApiError(error));
       }
     }
   };
