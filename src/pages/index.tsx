@@ -67,7 +67,7 @@ const index = () => {
 
       router.push("/accueil");
     } catch (error: any) {
-      if (error.response && error.response.status === 401) {
+      if (error.response.status === 401) {
         setErrorMessage("Votre compte n'existe pas");
       } else {
         setErrorMessage(`Une erreur ${error.response.status} s'est produite.`);

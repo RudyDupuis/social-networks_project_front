@@ -19,25 +19,34 @@ const accueil = () => {
   //Fetch data
   //Posts
   const [postsData, setPostsData] = useState<Post[]>([]);
+  const [postsMessage, setPostsMessage] = useState("C'est calme par ici ...");
   const [subscriptionOnly, setSubscriptionOnly] = useState(false);
 
   useEffect(() => {
     let uri = subscriptionOnly ? "postsSubscriptions" : "postsGeneral";
+
     axios
       .get(`./outputBack/posts/${uri}.json`)
       .then((res) => setPostsData(res.data.data))
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        setPostsMessage(`Une erreur ${error.response.status} s'est produite.`);
+      });
   }, [subscriptionOnly]);
 
   //Notifs
   const [notifsData, setNotifsData] = useState<Notif[]>([]);
+  const [notifsMessage, setNotifsMessage] = useState(
+    "Vous n'avez pas de notification ..."
+  );
   const [notifRemoved, setNotifRemoved] = useState(false);
 
   useEffect(() => {
     axios
       .get("./outputBack/notifs.json")
       .then((res) => setNotifsData(res.data.data))
-      .catch((err) => console.log(err));
+      .catch((error) =>
+        setNotifsMessage(`Une erreur ${error.response.status} s'est produite.`)
+      );
 
     setNotifRemoved(false);
   }, [notifRemoved]);
@@ -66,9 +75,11 @@ const accueil = () => {
           </div>
 
           <div className="home__posts--list">
-            {postsData.map((post) => (
-              <Posts key={post.id} data={post} />
-            ))}
+            {postsData.length > 0 ? (
+              postsData.map((post) => <Posts key={post.id} data={post} />)
+            ) : (
+              <p className="posts-message">{postsMessage}</p>
+            )}
           </div>
         </section>
 
@@ -79,13 +90,17 @@ const accueil = () => {
 
           <div className="home__notifs--list">
             <div>
-              {notifsData.map((notif) => (
-                <Notifs
-                  key={notif.id}
-                  data={notif}
-                  isDeleted={(e: boolean) => setNotifRemoved(true)}
-                />
-              ))}
+              {notifsData.length > 0 ? (
+                notifsData.map((notif) => (
+                  <Notifs
+                    key={notif.id}
+                    data={notif}
+                    isDeleted={(e: boolean) => setNotifRemoved(true)}
+                  />
+                ))
+              ) : (
+                <p className="notifs-message">{notifsMessage}</p>
+              )}
             </div>
           </div>
         </section>

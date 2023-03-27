@@ -13,26 +13,25 @@ const CreatePostOrComment = ({ type }: Props) => {
   const handleMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (message.length < 5) {
+      setError("Trop court !");
+      return;
+    }
+
     const data = {
       message,
     };
 
     try {
-      const res = await axios.post("", data, {
+      const res = await axios.post(`${type}/create`, data, {
         headers: {
           Authorization: `bearer ${Cookies.get("token")}`,
         },
       });
 
-      if (res.status !== 200) {
-        return setError(
-          "Le message n'a pas pu être envoyé, veuillez réessayer"
-        );
-      }
-
       window.location.reload();
-    } catch (err) {
-      setError("Le message n'a pas pu être envoyé, veuillez réessayer");
+    } catch (error: any) {
+      setError(`Erreur ${error.response.status}, veuillez réessayer.`);
     }
   };
 

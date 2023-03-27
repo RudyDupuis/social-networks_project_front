@@ -27,6 +27,11 @@
   &__comments {
     width: 80%;
 
+    &--message {
+      text-align: center;
+      margin: 20px 0;
+    }
+
     textarea {
       border-radius: 20px;
     }

@@ -30,11 +30,13 @@ const Interaction = ({ likes, comments, id, type, commentsEnabled }: Props) => {
       type,
     };
 
-    axios.post("", dataSignaled, {
-      headers: {
-        Authorization: `bearer ${Cookies.get("token")}`,
-      },
-    });
+    axios
+      .post("/post/report", dataSignaled, {
+        headers: {
+          Authorization: `bearer ${Cookies.get("token")}`,
+        },
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

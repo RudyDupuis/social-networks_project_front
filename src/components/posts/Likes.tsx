@@ -24,27 +24,29 @@ const Likes = ({ likes, id, type }: Props) => {
           }
         });
       })
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error));
   }, []);
 
   const handleLike = () => {
     if (isLiked) {
-      setIsLiked(false);
+      post();
       setLikeCounter(0);
-      post();
+      setIsLiked(false);
     } else {
-      setIsLiked(true);
-      setLikeCounter(1);
       post();
+      setLikeCounter(1);
+      setIsLiked(true);
     }
   };
 
   const post = () => {
-    // axios.post(`${type}/${id}/${isLiked ? "like" : "unlike"}`, {
-    //   headers: {
-    //     Authorization: `bearer ${Cookies.get("token")}`,
-    //   },
-    // });
+    axios
+      .post(`${isLiked ? "like" : "unlike"}/${type}/${id}`, {
+        headers: {
+          Authorization: `bearer ${Cookies.get("token")}`,
+        },
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import DateFormat from "../DateFormat";
 
 interface Props {
@@ -14,13 +14,13 @@ interface Props {
 const Notifs = ({ data, isDeleted }: Props) => {
   const deleteNotif = () => {
     axios
-      .post("", {
+      .post("/notif/delete", {
         headers: {
           Authorization: `bearer ${Cookies.get("token")}`,
         },
       })
       .then(() => isDeleted(true))
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error));
   };
 
   return (

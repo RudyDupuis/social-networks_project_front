@@ -30,14 +30,19 @@ const Message = ({ message, author, id, type }: Props) => {
   const deleteMessage = () => {
     if (sureToDelete) {
       axios
-        .delete("" + id, {
+        .post(`${type}/delete/${id}`, {
           headers: {
             Authorization: `bearer ${Cookies.get("token")}`,
           },
         })
-        .catch((err) => console.log(err));
-
-      window.location.reload();
+        .then((res) => {
+          window.location.reload();
+        })
+        .catch((error) =>
+          setError(
+            `Une erreur ${error.response.status} c'est produite, veuillez réessayer !`
+          )
+        );
     }
 
     setError("Êtes-vous sûr de vouloir supprimer ?");
@@ -45,23 +50,32 @@ const Message = ({ message, author, id, type }: Props) => {
   };
 
   const editMessage = () => {
+    if (newMessage === "") {
+      return setIsEditing(false);
+    }
+
+    if (newMessage.length < 5) {
+      return setError("Trop court !");
+    }
+
     const data = {
       newMessage,
     };
+
     axios
-      .put("" + id, data, {
+      .post(`${type}/update/${id}`, data, {
         headers: {
           Authorization: `bearer ${Cookies.get("token")}`,
         },
       })
       .then((res) => {
-        if (res.status === 200) {
-          setMessageDisplay(newMessage);
-          setIsEditing(false);
-        }
+        setMessageDisplay(newMessage);
+        setIsEditing(false);
       })
-      .catch((err) => {
-        setError("Une erreur c'est produite, veuillez réessayer !");
+      .catch((error) => {
+        setError(
+          `Une erreur ${error.response.status} c'est produite, veuillez réessayer !`
+        );
       });
   };
 
@@ -81,6 +95,7 @@ const Message = ({ message, author, id, type }: Props) => {
           <div className="message__content">
             <textarea
               autoFocus
+              maxLength={300}
               defaultValue={messageDisplay}
               onChange={(e) => setNewMessage(e.target.value)}
             ></textarea>
