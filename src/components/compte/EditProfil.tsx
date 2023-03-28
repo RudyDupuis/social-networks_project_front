@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 import InputField from "../InputField";
 
@@ -80,6 +81,20 @@ const EditProfil = () => {
     }
   }
 
+  //Api Error
+  const handleApiError = (error: any) => {
+    if (error.response.status === 409) {
+      if (error.response.data.message === "This email is already taken") {
+        return "Cette adresse mail est déjà utilisée.";
+      }
+      if (error.response.data.message === "This username is already taken") {
+        return "Ce pseudo est déjà utilisé.";
+      }
+      return "Ce pseudo ou cette adresse mail est déjà utilisé.";
+    }
+    return `Une erreur ${error.reponse.status} s'est produite.`;
+  };
+
   //Send to Api
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -87,22 +102,16 @@ const EditProfil = () => {
     const data = dataProcessing(username, mail, password, avatar);
 
     if (data) {
-      console.log(data);
-
       try {
-        const res = await axios.post("/user/update", data);
+        const res = await axios.post("/user/update", data, {
+          headers: {
+            Authorization: `bearer ${Cookies.get("token")}`,
+          },
+        });
 
         setInstructions("Votre profil à été mis à jour !");
       } catch (error: any) {
-        if (error.response.status === 409) {
-          setInstructions(
-            "Ce pseudo ou cette adresse e-mail est déjà utilisé."
-          );
-        } else {
-          setInstructions(
-            `Une erreur ${error.response.status} s'est produite.`
-          );
-        }
+        setInstructions(handleApiError(error));
       }
     }
   };

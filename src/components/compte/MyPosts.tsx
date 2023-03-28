@@ -1,5 +1,6 @@
 import { Post } from "@/types/Interface";
 import axios from "axios";
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import Posts from "../posts/Posts";
 
@@ -11,7 +12,11 @@ const MyPosts = () => {
 
   useEffect(() => {
     axios
-      .get(`./outputBack/posts/profile/1.json`)
+      .get(`./outputBack/posts/profile/1.json`, {
+        headers: {
+          Authorization: `bearer ${Cookies.get("token")}`,
+        },
+      })
       .then((res) => setPostsData(res.data.data))
       .catch((error) =>
         setErrorMessage(`Une erreur ${error.response.status} s'est produite.`)

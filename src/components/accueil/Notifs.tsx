@@ -14,7 +14,7 @@ interface Props {
 const Notifs = ({ data, isDeleted }: Props) => {
   const deleteNotif = () => {
     axios
-      .post("/notif/delete", {
+      .post("/notifs/delete", {
         headers: {
           Authorization: `bearer ${Cookies.get("token")}`,
         },

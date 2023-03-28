@@ -10,19 +10,19 @@ const Logout = () => {
   const logout = async () => {
     try {
       const response = await axios.post("/user/logout", {
-        token: Cookies.get("token"),
+        headers: {
+          Authorization: `bearer ${Cookies.get("token")}`,
+        },
       });
 
-      if (response.status === 200) {
-        Cookies.remove("role"); // Remove all cookies
-        Cookies.remove("token");
-        Cookies.remove("email");
-        Cookies.remove("avatar");
-        Cookies.remove("id");
-        Cookies.remove("username");
+      Cookies.remove("role"); // Remove all cookies
+      Cookies.remove("token");
+      Cookies.remove("email");
+      Cookies.remove("avatar");
+      Cookies.remove("id");
+      Cookies.remove("username");
 
-        router.push("/"); // Redirect to login page
-      }
+      router.push("/"); // Redirect to login page
     } catch (error: any) {
       setErrorMessage(`Une erreur ${error.response.status} s'est produite.`);
     }

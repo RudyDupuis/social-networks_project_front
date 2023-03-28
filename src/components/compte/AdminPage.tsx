@@ -1,5 +1,6 @@
 import { Comment, Post } from "@/types/Interface";
 import axios from "axios";
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import Comments from "../posts/Comments";
 import Posts from "../posts/Posts";
@@ -12,7 +13,11 @@ const AdminPage = () => {
 
   useEffect(() => {
     axios
-      .get(`./outputBack/adminPage.json`)
+      .get(`./outputBack/adminPage.json`, {
+        headers: {
+          Authorization: `bearer ${Cookies.get("token")}`,
+        },
+      })
       .then((res) => {
         setPostsData(res.data.data.posts);
         setCommentsData(res.data.data.comments);

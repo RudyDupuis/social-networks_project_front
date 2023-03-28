@@ -5,6 +5,7 @@ import { Notif, Post } from "@/types/Interface";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import CreatePostOrComment from "@/components/posts/CreatePostOrComment";
+import Cookies from "js-cookie";
 
 const accueil = () => {
   //Close the notification modal and redisplay the posts section
@@ -26,7 +27,11 @@ const accueil = () => {
     let uri = subscriptionOnly ? "postsSubscriptions" : "postsGeneral";
 
     axios
-      .get(`./outputBack/posts/${uri}.json`)
+      .get(`./outputBack/posts/${uri}.json`, {
+        headers: {
+          Authorization: `bearer ${Cookies.get("token")}`,
+        },
+      })
       .then((res) => setPostsData(res.data.data))
       .catch((error) => {
         setPostsMessage(`Une erreur ${error.response.status} s'est produite.`);
@@ -42,7 +47,11 @@ const accueil = () => {
 
   useEffect(() => {
     axios
-      .get("./outputBack/notifs.json")
+      .get("./outputBack/notifs.json", {
+        headers: {
+          Authorization: `bearer ${Cookies.get("token")}`,
+        },
+      })
       .then((res) => setNotifsData(res.data.data))
       .catch((error) =>
         setNotifsMessage(`Une erreur ${error.response.status} s'est produite.`)

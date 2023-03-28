@@ -82,9 +82,7 @@ const inscription = () => {
       try {
         const res = await axios.post("/user/create", data);
 
-        if (res.status === 201) {
-          setInstructions("Compte créé ! Veuillez vous connecter");
-        }
+        setInstructions("Compte créé ! Veuillez vous connecter");
       } catch (error: any) {
         setInstructions(handleApiError(error));
       }
