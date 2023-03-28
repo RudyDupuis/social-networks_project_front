@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ProfileLinkButton from "../ProfileLinkButton";
 import { UserProfile } from "@/types/Interface";
+import { useRouter } from "next/router";
 
 const SearchInput = () => {
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [usersData, setUsersData] = useState<UserProfile[]>([]);
+  const [nullSearch, setNullSearch] = useState("Profil inconnu.");
 
   //Prevents the modal from disappearing if you click on a profile
   const handleBlur = (e: any) => {
@@ -19,17 +21,20 @@ const SearchInput = () => {
     }
   };
 
+  //Close the modal when changing profiles on the profile page
+  const router = useRouter();
+  useEffect(() => {
+    setSearchFocused(false);
+  }, [router.query.id]);
+
   //Fetch data
   useEffect(() => {
-    // axios
-    //   .get(`/users/${searchValue}`)
-    //   .then((res) => setUsersData(res.data.data))
-    //   .catch((err) => console.log(err));
-
     axios
       .get(`./outputBack/headerSearch.json`)
       .then((res) => setUsersData(res.data.data))
-      .catch((err) => console.log(err));
+      .catch((error) =>
+        setNullSearch(`Une erreur ${error.response.status} s'est produite.`)
+      );
   }, [searchValue]);
 
   return (
@@ -49,10 +54,13 @@ const SearchInput = () => {
         className="header-search__results"
         style={{ display: searchFocused ? "block" : "none" }}
       >
-        {usersData &&
+        {usersData.length > 0 ? (
           usersData.map((user) => (
             <ProfileLinkButton key={user.id} user={user} />
-          ))}
+          ))
+        ) : (
+          <p className="null-search">{nullSearch}</p>
+        )}
       </div>
     </div>
   );

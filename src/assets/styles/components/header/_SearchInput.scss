@@ -20,6 +20,7 @@
     width: 100%;
     z-index: 5;
     border: 2px solid $main;
+    background: $background-2;
 
     .profil-link-button {
       padding: 10px;
@@ -45,6 +46,11 @@
       &:active {
         transform: translateX(-10px);
       }
+    }
+
+    .null-search {
+      text-align: center;
+      margin: 20px 0;
     }
   }
 }

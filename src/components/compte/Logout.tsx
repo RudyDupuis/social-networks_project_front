@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
 const Logout = () => {
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   const logout = async () => {
@@ -22,15 +23,18 @@ const Logout = () => {
 
         router.push("/"); // Redirect to login page
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      setErrorMessage(`Une erreur ${error.response.status} s'est produite.`);
     }
   };
 
   return (
-    <button className="btn-2" onClick={logout}>
-      Déconnexion
-    </button>
+    <div className="account-logout">
+      <button className="btn-2" onClick={logout}>
+        Déconnexion
+      </button>
+      <p>{errorMessage}</p>
+    </div>
   );
 };
 

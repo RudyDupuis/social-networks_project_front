@@ -8,11 +8,11 @@ const Header = () => {
   const router = useRouter();
 
   const openNotifs = () => {
-    (document.querySelector(".home__notifs") as HTMLElement).classList.add(
-      "home__notifs--open"
-    );
-    (document.querySelector(".home__posts") as HTMLElement).style.display =
-      "none";
+    const notifs = document.querySelector(".home__notifs");
+    notifs?.classList.add("home__notifs--open");
+
+    const posts = document.querySelector(".home__posts");
+    (posts as HTMLElement).style.display = "none";
   };
 
   return (

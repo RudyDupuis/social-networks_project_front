@@ -34,8 +34,8 @@ const ProfileButtons = ({
           },
         }
       )
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -50,8 +50,8 @@ const ProfileButtons = ({
           Authorization: `bearer ${Cookies.get("token")}`,
         },
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
   };
 

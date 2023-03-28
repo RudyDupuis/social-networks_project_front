@@ -1,6 +1,15 @@
 .my-follows {
   width: 100%;
 
+  h1 {
+    text-align: center;
+  }
+
+  &__message {
+    text-align: center;
+    margin-top: 50px;
+  }
+
   .profil-link-button {
     background: $background-2;
     border-radius: 10px;

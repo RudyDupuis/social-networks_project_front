@@ -99,7 +99,9 @@ const EditProfil = () => {
             "Ce pseudo ou cette adresse e-mail est déjà utilisé."
           );
         } else {
-          setInstructions("Une erreur s'est produite, veuillez réessayer.");
+          setInstructions(
+            `Une erreur ${error.response.status} s'est produite.`
+          );
         }
       }
     }
