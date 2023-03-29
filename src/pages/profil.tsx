@@ -67,7 +67,8 @@ const profil = () => {
                     ? userData.avatar.url
                     : "/assets/profil-picto.png"
                 }
-                alt="logo"
+                alt="Avatar d'un utilisateur"
+                priority={true}
                 width={119}
                 height={119}
               />

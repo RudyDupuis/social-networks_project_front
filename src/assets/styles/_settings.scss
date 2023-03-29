@@ -81,17 +81,18 @@ button {
   border: 2px solid $main;
   background: transparent;
 }
+
 .btn-anim {
   cursor: pointer;
-  transition: 0.2s;
-  user-select: none;
+  transition: 0.3s;
+  height: fit-content;
 
   &:hover {
     color: $secondary;
   }
 
   &:active {
-    transform: translateX(-5px);
+    transform: rotate(180deg);
   }
 }
 

@@ -17,6 +17,7 @@ const Logo = () => {
         <Image
           src="/assets/logo-dark.png"
           alt="logo"
+          priority={true}
           width={521 / 2.7}
           height={133 / 2.7}
         />
@@ -24,6 +25,7 @@ const Logo = () => {
         <Image
           src="/assets/logo.png"
           alt="logo"
+          priority={true}
           width={521 / 2.7}
           height={133 / 2.7}
         />

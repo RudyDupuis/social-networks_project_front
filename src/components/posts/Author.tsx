@@ -26,7 +26,8 @@ const Author = ({ id, avatar, username, created_at }: Props) => {
       {isAuthor ? (
         <Image
           src={avatar ? avatar : "/assets/profil-picto.png"}
-          alt="logo"
+          alt="Avatar d'un utilisateur"
+          priority={true}
           width={119 / 3}
           height={119 / 3}
         />
@@ -34,7 +35,8 @@ const Author = ({ id, avatar, username, created_at }: Props) => {
         <Link href={{ pathname: "/profil", query: { id: id } }}>
           <Image
             src={avatar ? avatar : "/assets/profil-picto.png"}
-            alt="logo"
+            alt="Avatar d'un utilisateur"
+            priority={true}
             width={119 / 3}
             height={119 / 3}
           />

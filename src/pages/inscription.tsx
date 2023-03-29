@@ -23,14 +23,14 @@ const inscription = () => {
     const mailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[\S]{8,}$/;
     const usernameLengthMin = 5;
-    const usernameLengthMax = 15;
+    const usernameLengthMax = 12;
     let instructionsList = [];
 
     if (
       username.length < usernameLengthMin ||
       username.length > usernameLengthMax
     ) {
-      instructionsList.push("Le pseudo doit faire entre 5 et 15 caractères.");
+      instructionsList.push("Le pseudo doit faire entre 5 et 12 caractères.");
     }
 
     if (!mailRegex.test(mail)) {

@@ -17,8 +17,9 @@ const ProfileLinkButton = ({ user }: Props) => {
       <div>
         <Image
           src={user.avatar.url ? user.avatar.url : "/assets/profil-picto.png"}
-          alt="logo"
-          width={96 / 4}
+          alt="Avatar d'un utilisateur"
+          priority={true}
+          width={119 / 4}
           height={119 / 4}
         />
         <p>{user.username}</p>

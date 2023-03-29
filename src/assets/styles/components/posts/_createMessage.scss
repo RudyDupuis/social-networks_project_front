@@ -20,14 +20,19 @@
     background: $main;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s;
 
     &:hover {
       background: $secondary;
     }
 
+    .fa-share {
+      transition: 0.2s;
+    }
+
     &:active {
-      transform: translateX(10px);
+      .fa-share {
+        transform: translateX(5px);
+      }
     }
 
     i {
@@ -38,5 +43,6 @@
 
   &__error {
     color: $false;
+    text-align: center;
   }
 }

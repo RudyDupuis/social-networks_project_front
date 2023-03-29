@@ -47,10 +47,7 @@ const DarkModeButton = () => {
   };
 
   return (
-    <button
-      className="account__buttons--button btn-anim"
-      onClick={handleThemeChange}
-    >
+    <button className="account__buttons--button" onClick={handleThemeChange}>
       {currentTheme === "dark" ? (
         <div>
           <i className="fa-solid fa-moon"></i> <p>Mode Sombre</p>

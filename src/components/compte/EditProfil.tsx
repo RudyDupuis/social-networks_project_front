@@ -92,7 +92,7 @@ const EditProfil = () => {
       }
       return "Ce pseudo ou cette adresse mail est déjà utilisé.";
     }
-    return `Une erreur ${error.reponse.status} s'est produite.`;
+    return `Une erreur ${error.response.status} s'est produite.`;
   };
 
   //Send to Api

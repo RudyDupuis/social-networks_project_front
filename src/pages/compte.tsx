@@ -78,7 +78,7 @@ const Compte = () => {
             {settingsButtons.map((button) => (
               <button
                 key={button[0]}
-                className="account__buttons--button btn-anim"
+                className="account__buttons--button"
                 onClick={() => handleSectionChange(button[0])}
               >
                 <div>

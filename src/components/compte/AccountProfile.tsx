@@ -26,7 +26,13 @@ const AccountProfile = () => {
 
   return (
     <div className="account-profile">
-      <Image src={userData.src} alt="logo" width={119} height={119} />
+      <Image
+        src={userData.src}
+        alt="Mon avatar"
+        priority={true}
+        width={119}
+        height={119}
+      />
 
       <div>
         <p className="account-profile__pseudo">{userData.username}</p>

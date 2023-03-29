@@ -43,8 +43,14 @@
         background: $secondary;
       }
 
+      .fa-angle-right {
+        transition: 0.3s;
+      }
+
       &:active {
-        transform: translateX(-10px);
+        .fa-angle-right {
+          transform: rotate(360deg);
+        }
       }
     }
 

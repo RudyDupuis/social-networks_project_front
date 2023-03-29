@@ -5,7 +5,7 @@
     font-size: 0.8rem;
   }
 
-  @media (max-width: 350px) {
+  @media (max-width: 380px) {
     align-self: center;
     margin: 10px 0;
   }
@@ -21,9 +21,5 @@
 
   .fa-flag {
     margin-left: 13px;
-  }
-
-  i:active {
-    transform: translateY(-10px);
   }
 }

@@ -22,6 +22,7 @@ const Header = () => {
           <Image
             src="/assets/logo.png"
             alt="logo"
+            priority={true}
             width={521 / 4}
             height={133 / 4}
           />

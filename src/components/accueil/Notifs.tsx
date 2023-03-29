@@ -32,7 +32,8 @@ const Notifs = ({ data, isDeleted }: Props) => {
               ? data.user.avatar.url
               : "/assets/profil-picto.png"
           }
-          alt="logo"
+          alt="Avatar d'un utilisateur"
+          priority={true}
           width={119 / 3}
           height={119 / 3}
         />
