@@ -1,8 +1,8 @@
 import { Comment } from "@/types/Interface";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Comments from "./Comments";
 import CreatePostOrComment from "./CreatePostOrComment";
+import { axiosService } from "@/services/axiosService";
 
 interface Props {
   id: number;
@@ -15,14 +15,17 @@ const CommentsList = ({ id }: Props) => {
   );
 
   useEffect(() => {
-    axios
-      .get(`./outputBack/comments/comment${id}.json`)
-      .then((res) => setCommentsData(res.data.data))
-      .catch((error) =>
-        setCommentsMessage(
-          `Une erreur ${error.response.status} s'est produite.`
-        )
-      );
+    //cf services => axiosService
+    axiosService({
+      method: "get",
+      uri: `comments/comment${id}.json`,
+      thenAction: function (response) {
+        setCommentsData(response.data);
+      },
+      catchAction: function (error) {
+        setCommentsMessage(error);
+      },
+    });
   });
 
   return (

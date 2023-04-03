@@ -1,10 +1,9 @@
 import { Notif } from "@/types/Interface";
-import axios from "axios";
-import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import DateFormat from "../DateFormat";
+import { axiosService } from "@/services/axiosService";
 
 interface Props {
   data: Notif;
@@ -13,14 +12,17 @@ interface Props {
 
 const Notifs = ({ data, isDeleted }: Props) => {
   const deleteNotif = () => {
-    axios
-      .post("/notifs/delete", {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .then(() => isDeleted(true))
-      .catch((error) => console.log(error));
+    //cf services => axiosService
+    axiosService({
+      method: "post",
+      uri: "notifs/delete",
+      thenAction: function (response) {
+        isDeleted(true);
+      },
+      catchAction: function (error) {
+        console.log(error);
+      },
+    });
   };
 
   return (

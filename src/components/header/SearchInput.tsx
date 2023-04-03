@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ProfileLinkButton from "../ProfileLinkButton";
 import { UserProfile } from "@/types/Interface";
 import { useRouter } from "next/router";
+import { axiosService } from "@/services/axiosService";
 
 const SearchInput = () => {
   const [searchFocused, setSearchFocused] = useState(false);
@@ -29,12 +29,17 @@ const SearchInput = () => {
 
   //Fetch data
   useEffect(() => {
-    axios
-      .get(`./outputBack/headerSearch.json`)
-      .then((res) => setUsersData(res.data.data))
-      .catch((error) =>
-        setNullSearch(`Une erreur ${error.response.status} s'est produite.`)
-      );
+    //cf services => axiosService
+    axiosService({
+      method: "get",
+      uri: "headerSearch.json",
+      thenAction: function (response) {
+        setUsersData(response.data);
+      },
+      catchAction: function (error) {
+        setNullSearch(error);
+      },
+    });
   }, [searchValue]);
 
   return (

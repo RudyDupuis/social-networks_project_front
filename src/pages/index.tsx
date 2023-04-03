@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
 import Link from "next/link";
 import Cookies from "js-cookie";
 
 import Logo from "@/components/Logo";
 import InputField from "@/components/InputField";
+import { axiosService } from "@/services/axiosService";
 
 const index = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -18,6 +18,45 @@ const index = () => {
     router.push("/accueil");
   }
 
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    //cf services => axiosService
+    axiosService({
+      method: "get", //it's a post
+      uri: "loginResp.json",
+      data: { identifier, password },
+      thenAction: function (response) {
+        //Create cookies
+        // const expires = parseExpirationDate(res.data.token.expires_at);
+        const expires = 1;
+
+        const dataValue = [
+          response.token.token,
+          response.user.id,
+          response.user.username,
+          response.user.email,
+          response.user.avatar.url,
+          response.user.role,
+        ];
+
+        const dataKey = ["token", "id", "username", "email", "avatar", "role"];
+
+        for (let i = 0; i < dataKey.length; i++) {
+          Cookies.set(dataKey[i], dataValue[i], {
+            expires,
+            Secure: true,
+          });
+        }
+
+        router.push("/accueil");
+      },
+      catchAction: function (error) {
+        setErrorMessage(error);
+      },
+    });
+  };
+
   //Function that handles the cookie expiration format
   function parseExpirationDate(expiresAt: string): Date {
     // Remove timezone
@@ -29,51 +68,6 @@ const index = () => {
       expiresAtDate.valueOf() - expiresAtDate.getTimezoneOffset() * 60000
     );
   }
-
-  //Send to Api
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const data = {
-      identifier,
-      password,
-    };
-
-    try {
-      // const res = await axios.post("/user/login", data);
-      const res = await axios.get("./outputBack/loginResp.json");
-
-      //Create cookies
-      // const expires = parseExpirationDate(res.data.token.expires_at);
-      const expires = 1;
-
-      const dataValue = [
-        res.data.token.token,
-        res.data.user.id,
-        res.data.user.username,
-        res.data.user.email,
-        res.data.user.avatar.url,
-        res.data.user.role,
-      ];
-
-      const dataKey = ["token", "id", "username", "email", "avatar", "role"];
-
-      for (let i = 0; i < dataKey.length; i++) {
-        Cookies.set(dataKey[i], dataValue[i], {
-          expires,
-          Secure: true,
-        });
-      }
-
-      router.push("/accueil");
-    } catch (error: any) {
-      if (error.response.status === 401) {
-        setErrorMessage("Votre compte n'existe pas");
-      } else {
-        setErrorMessage(`Une erreur ${error.response.status} s'est produite.`);
-      }
-    }
-  };
 
   return (
     <main className="login">

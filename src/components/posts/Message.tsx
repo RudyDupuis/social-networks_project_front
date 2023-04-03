@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosService } from "@/services/axiosService";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 
@@ -29,20 +29,17 @@ const Message = ({ message, author, id, type }: Props) => {
 
   const deleteMessage = () => {
     if (sureToDelete) {
-      axios
-        .post(`${type}/delete/${id}`, {
-          headers: {
-            Authorization: `bearer ${Cookies.get("token")}`,
-          },
-        })
-        .then((res) => {
+      //cf services => axiosService
+      axiosService({
+        method: "post",
+        uri: `${type}/delete/${id}`,
+        thenAction: function (response) {
           window.location.reload();
-        })
-        .catch((error) =>
-          setError(
-            `Une erreur ${error.response.status} c'est produite, veuillez réessayer !`
-          )
-        );
+        },
+        catchAction: function (error) {
+          setError(error);
+        },
+      });
     }
 
     setError("Êtes-vous sûr de vouloir supprimer ?");
@@ -58,25 +55,19 @@ const Message = ({ message, author, id, type }: Props) => {
       return setError("Trop court !");
     }
 
-    const data = {
-      newMessage,
-    };
-
-    axios
-      .post(`${type}/update/${id}`, data, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .then((res) => {
+    //cf services => axiosService
+    axiosService({
+      method: "post",
+      uri: `${type}/update/${id}`,
+      data: newMessage,
+      thenAction: function (response) {
         setMessageDisplay(newMessage);
         setIsEditing(false);
-      })
-      .catch((error) => {
-        setError(
-          `Une erreur ${error.response.status} c'est produite, veuillez réessayer !`
-        );
-      });
+      },
+      catchAction: function (error) {
+        setError(error);
+      },
+    });
   };
 
   return (

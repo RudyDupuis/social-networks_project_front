@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Link from "next/link";
 
 import Logo from "@/components/Logo";
 import CheckboxCGU from "@/components/inscription/CheckboxCGU";
 import InputField from "@/components/InputField";
+
+import { processRegistrationData } from "@/helpers/processFieldData";
+import { axiosService } from "@/services/axiosService";
 
 const inscription = () => {
   const [instructions, setInstructions] = useState("");
@@ -13,80 +15,33 @@ const inscription = () => {
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
 
-  //Check if the input information is correct
-  const dataProcessing = (
-    username: string,
-    mail: string,
-    password: string,
-    confPassword: string
-  ) => {
-    const mailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[\S]{8,}$/;
-    const usernameLengthMin = 5;
-    const usernameLengthMax = 12;
-    let instructionsList = [];
-
-    if (
-      username.length < usernameLengthMin ||
-      username.length > usernameLengthMax
-    ) {
-      instructionsList.push("Le pseudo doit faire entre 5 et 12 caractères.");
-    }
-
-    if (!mailRegex.test(mail)) {
-      instructionsList.push("Le mail n'est pas correct.");
-    }
-
-    if (!passwordRegex.test(password)) {
-      instructionsList.push(
-        "Le mot de passe doit contenir 8 caractères dont une majuscule et un chiffre."
-      );
-    }
-
-    if (password !== confPassword) {
-      instructionsList.push("Les deux mots de passe ne sont pas identiques.");
-    }
-
-    setInstructions(instructionsList.join("\n\n"));
-
-    if (instructionsList.length === 0) {
-      return {
-        username,
-        mail,
-        password,
-      };
-    }
-  };
-
-  //Api Error
-  const handleApiError = (error: any) => {
-    if (error.response.status === 409) {
-      if (error.response.data.message === "This email is already taken") {
-        return "Cette adresse mail est déjà utilisée.";
-      }
-      if (error.response.data.message === "This username is already taken") {
-        return "Ce pseudo est déjà utilisé.";
-      }
-      return "Ce pseudo ou cette adresse mail est déjà utilisé.";
-    }
-    return `Une erreur ${error.reponse.status} s'est produite.`;
-  };
-
-  //Send to Api
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = dataProcessing(username, mail, password, confPassword);
+    //cf helpers => processFieldData
+    const processData = processRegistrationData(
+      username,
+      mail,
+      password,
+      confPassword
+    );
 
-    if (data) {
-      try {
-        const res = await axios.post("/user/create", data);
-
-        setInstructions("Compte créé ! Veuillez vous connecter");
-      } catch (error: any) {
-        setInstructions(handleApiError(error));
-      }
+    if (typeof processData === "string") {
+      return setInstructions(processData);
     }
+
+    //cf services => axiosService
+    axiosService({
+      method: "post",
+      uri: "user/create",
+      data: processData,
+      thenAction: function (response) {
+        setInstructions("Compte créé ! Veuillez vous connecter");
+      },
+      catchAction: function (error) {
+        setInstructions(error);
+      },
+    });
   };
 
   return (

@@ -1,31 +1,31 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { axiosService } from "@/services/axiosService";
 
 const Logout = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
-  const logout = async () => {
-    try {
-      const response = await axios.post("/user/logout", {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      });
+  const logout = () => {
+    //cf services => axiosService
+    axiosService({
+      method: "post",
+      uri: "user/logout",
+      thenAction: function (response) {
+        Cookies.remove("role"); // Remove all cookies
+        Cookies.remove("token");
+        Cookies.remove("email");
+        Cookies.remove("avatar");
+        Cookies.remove("id");
+        Cookies.remove("username");
 
-      Cookies.remove("role"); // Remove all cookies
-      Cookies.remove("token");
-      Cookies.remove("email");
-      Cookies.remove("avatar");
-      Cookies.remove("id");
-      Cookies.remove("username");
-
-      router.push("/"); // Redirect to login page
-    } catch (error: any) {
-      setErrorMessage(`Une erreur ${error.response.status} s'est produite.`);
-    }
+        router.push("/"); // Redirect to login page
+      },
+      catchAction: function (error) {
+        setErrorMessage(error);
+      },
+    });
   };
 
   return (

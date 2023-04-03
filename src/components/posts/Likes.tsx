@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosService } from "@/services/axiosService";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 
@@ -14,17 +14,22 @@ const Likes = ({ likes, id, type }: Props) => {
 
   //Know if the user has already liked
   useEffect(() => {
-    axios
-      .get(`./outputBack/likes/noLike.json`)
-      .then((res) => {
-        res.data.data.map((user: any) => {
+    //cf services => axiosService
+    axiosService({
+      method: "get",
+      uri: "likes/Nolike.json",
+      thenAction: function (response) {
+        response.data.map((user: any) => {
           if (user.user_id.toString() === Cookies.get("id")) {
             setIsLiked(true);
             setLikeCounter(1);
           }
         });
-      })
-      .catch((error) => console.log(error));
+      },
+      catchAction: function (error) {
+        console.log(error);
+      },
+    });
   }, []);
 
   const handleLike = () => {
@@ -40,13 +45,14 @@ const Likes = ({ likes, id, type }: Props) => {
   };
 
   const post = () => {
-    axios
-      .post(`${isLiked ? "like" : "unlike"}/${type}/${id}`, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .catch((error) => console.log(error));
+    //cf services => axiosService
+    axiosService({
+      method: "post",
+      uri: `${isLiked ? "like" : "unlike"}/${type}/${id}`,
+      catchAction: function (error) {
+        console.log(error);
+      },
+    });
   };
 
   return (

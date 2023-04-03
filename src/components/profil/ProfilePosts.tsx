@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Posts from "../posts/Posts";
+import { axiosService } from "@/services/axiosService";
 
 interface Props {
   userId: number;
@@ -13,14 +13,17 @@ const ProfilePosts = ({ userId }: Props) => {
   );
 
   useEffect(() => {
-    axios
-      .get(`./outputBack/posts/profile/${userId}.json`)
-      .then((res) => {
-        setPosts(res.data.data);
-      })
-      .catch((error) =>
-        setErrorMessage(`Une erreur ${error.response.status} s'est produite.`)
-      );
+    //cf services => axiosService
+    axiosService({
+      method: "get",
+      uri: `posts/profile/${userId}.json`,
+      thenAction: function (response) {
+        setPosts(response.data);
+      },
+      catchAction: function (error) {
+        setErrorMessage(error);
+      },
+    });
   }, [userId]);
 
   return (

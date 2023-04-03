@@ -1,7 +1,6 @@
-import axios from "axios";
-import Cookies from "js-cookie";
 import React, { useState } from "react";
 import Likes from "./Likes";
+import { axiosService } from "@/services/axiosService";
 
 interface Props {
   likes: string;
@@ -25,18 +24,15 @@ const Interaction = ({ likes, comments, id, type, commentsEnabled }: Props) => {
   };
 
   const reportingRequest = () => {
-    const dataSignaled = {
-      id,
-      type,
-    };
-
-    axios
-      .post("/post/report", dataSignaled, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .catch((error) => console.log(error));
+    //cf services => axiosService
+    axiosService({
+      method: "post",
+      uri: "post/report",
+      data: { id, type },
+      catchAction: function (error) {
+        console.log(error);
+      },
+    });
   };
 
   return (

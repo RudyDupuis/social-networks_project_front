@@ -1,9 +1,8 @@
 import { Comment, Post } from "@/types/Interface";
-import axios from "axios";
-import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import Comments from "../posts/Comments";
 import Posts from "../posts/Posts";
+import { axiosService } from "@/services/axiosService";
 
 const AdminPage = () => {
   const [postsData, setPostsData] = useState<Post[]>([]);
@@ -12,22 +11,19 @@ const AdminPage = () => {
   const [commentsMessage, setCommentsMessage] = useState("Vous êtes à jour !");
 
   useEffect(() => {
-    axios
-      .get(`./outputBack/adminPage.json`, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .then((res) => {
-        setPostsData(res.data.data.posts);
-        setCommentsData(res.data.data.comments);
-      })
-      .catch((error) => {
-        setPostsMessage(`Une erreur ${error.response.status} s'est produite.`);
-        setCommentsMessage(
-          `Une erreur ${error.response.status} s'est produite.`
-        );
-      });
+    //cf services => axiosService
+    axiosService({
+      method: "get",
+      uri: "adminPage.json",
+      thenAction: function (response) {
+        setPostsData(response.data.posts);
+        setCommentsData(response.data.comments);
+      },
+      catchAction: function (error) {
+        setPostsMessage(error);
+        setCommentsMessage(error);
+      },
+    });
   }, []);
   return (
     <div className="admin-page">

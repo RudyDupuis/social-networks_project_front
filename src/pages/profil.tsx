@@ -1,8 +1,8 @@
 import Header from "@/components/header/Header";
 import ProfileButtons from "@/components/profil/ProfileButtons";
 import ProfilePosts from "@/components/profil/ProfilePosts";
+import { axiosService } from "@/services/axiosService";
 import { UserProfile } from "@/types/Interface";
-import axios from "axios";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -32,17 +32,22 @@ const profil = () => {
 
   useEffect(() => {
     if (id) {
-      axios
-        .get(`./outputBack/profiles/profile${id}.json`)
-        .then((res) => {
+      //cf services => axiosService
+      axiosService({
+        method: "get",
+        uri: `profiles/profile${id}.json`,
+        thenAction: function (response) {
           setDisplayProfile(true);
-          setUserData(res.data.data);
+          setUserData(response.data);
 
-          if (res.data.data.isbanned && Cookies.get("role") !== "ADMIN") {
+          if (response.data.isbanned && Cookies.get("role") !== "ADMIN") {
             setDisplayProfile(false);
           }
-        })
-        .catch(() => setDisplayProfile(false));
+        },
+        catchAction: function (error) {
+          setDisplayProfile(false);
+        },
+      });
     }
   }, [id]);
 

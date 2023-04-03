@@ -1,5 +1,4 @@
-import axios from "axios";
-import Cookies from "js-cookie";
+import { axiosService } from "@/services/axiosService";
 import React, { useState } from "react";
 
 interface Props {
@@ -18,21 +17,18 @@ const CreatePostOrComment = ({ type }: Props) => {
       return;
     }
 
-    const data = {
-      message,
-    };
-
-    try {
-      const res = await axios.post(`${type}/create`, data, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      });
-
-      window.location.reload();
-    } catch (error: any) {
-      setError(`Erreur ${error.response.status}, veuillez réessayer.`);
-    }
+    //cf services => axiosService
+    axiosService({
+      method: "post",
+      uri: `${type}/create`,
+      data: message,
+      thenAction: function (response) {
+        window.location.reload();
+      },
+      catchAction: function (error) {
+        setError(error);
+      },
+    });
   };
 
   return (

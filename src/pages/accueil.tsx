@@ -2,10 +2,9 @@ import Header from "@/components/header/Header";
 import Notifs from "@/components/accueil/Notifs";
 import Posts from "@/components/posts/Posts";
 import { Notif, Post } from "@/types/Interface";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import CreatePostOrComment from "@/components/posts/CreatePostOrComment";
-import Cookies from "js-cookie";
+import { axiosService } from "@/services/axiosService";
 
 const accueil = () => {
   //Close the notification modal and redisplay the posts section
@@ -24,18 +23,21 @@ const accueil = () => {
   const [subscriptionOnly, setSubscriptionOnly] = useState(false);
 
   useEffect(() => {
-    let uri = subscriptionOnly ? "postsSubscriptions" : "postsGeneral";
+    let whatUri = subscriptionOnly
+      ? "posts/postsSubscriptions.json"
+      : "posts/postsGeneral.json";
 
-    axios
-      .get(`./outputBack/posts/${uri}.json`, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .then((res) => setPostsData(res.data.data))
-      .catch((error) => {
-        setPostsMessage(`Une erreur ${error.response.status} s'est produite.`);
-      });
+    //cf services => axiosService
+    axiosService({
+      method: "get",
+      uri: whatUri,
+      thenAction: function (response) {
+        setPostsData(response.data);
+      },
+      catchAction: function (error) {
+        setPostsMessage(error);
+      },
+    });
   }, [subscriptionOnly]);
 
   //Notifs
@@ -46,16 +48,17 @@ const accueil = () => {
   const [notifRemoved, setNotifRemoved] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("./outputBack/notifs.json", {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .then((res) => setNotifsData(res.data.data))
-      .catch((error) =>
-        setNotifsMessage(`Une erreur ${error.response.status} s'est produite.`)
-      );
+    //cf services => axiosService
+    axiosService({
+      method: "get",
+      uri: "notifs.json",
+      thenAction: function (response) {
+        setNotifsData(response.data);
+      },
+      catchAction: function (error) {
+        setNotifsMessage(error);
+      },
+    });
 
     setNotifRemoved(false);
   }, [notifRemoved]);

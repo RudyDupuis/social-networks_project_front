@@ -1,8 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { UserProfile } from "@/types/Interface";
 import ProfileLinkButton from "../ProfileLinkButton";
-import Cookies from "js-cookie";
+import { axiosService } from "@/services/axiosService";
 
 const MyFollows = () => {
   const [followsData, setFollowsData] = useState<UserProfile[]>([]);
@@ -11,16 +10,17 @@ const MyFollows = () => {
   );
 
   useEffect(() => {
-    axios
-      .get(`./outputBack/subscriptions.json`, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .then((res) => setFollowsData(res.data.data))
-      .catch((error) =>
-        setErrorMessage(`Une erreur ${error.response.status} s'est produite.`)
-      );
+    //cf services => axiosService
+    axiosService({
+      method: "get",
+      uri: "subscriptions.json",
+      thenAction: function (response) {
+        setFollowsData(response.data);
+      },
+      catchAction: function (error) {
+        setErrorMessage(error);
+      },
+    });
   }, []);
   return (
     <div className="my-follows">

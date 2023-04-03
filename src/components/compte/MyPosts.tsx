@@ -1,8 +1,7 @@
 import { Post } from "@/types/Interface";
-import axios from "axios";
-import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import Posts from "../posts/Posts";
+import { axiosService } from "@/services/axiosService";
 
 const MyPosts = () => {
   const [postsData, setPostsData] = useState<Post[]>([]);
@@ -11,16 +10,17 @@ const MyPosts = () => {
   );
 
   useEffect(() => {
-    axios
-      .get(`./outputBack/posts/profile/1.json`, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .then((res) => setPostsData(res.data.data))
-      .catch((error) =>
-        setErrorMessage(`Une erreur ${error.response.status} s'est produite.`)
-      );
+    //cf services => axiosService
+    axiosService({
+      method: "get",
+      uri: "posts/profile/1.json",
+      thenAction: function (response) {
+        setPostsData(response.data);
+      },
+      catchAction: function (error) {
+        setErrorMessage(error);
+      },
+    });
   }, []);
   return (
     <div className="my-posts">

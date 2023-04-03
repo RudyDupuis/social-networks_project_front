@@ -1,5 +1,4 @@
-import axios from "axios";
-import Cookies from "js-cookie";
+import { axiosService } from "@/services/axiosService";
 import React, { useEffect, useState } from "react";
 
 interface Props {
@@ -23,20 +22,16 @@ const ProfileButtons = ({
       ? setCurrentUserFollows(false)
       : setCurrentUserFollows(true);
 
-    axios
-      .post(
-        `/user/${profileId}/${
-          currentUserFollows ? "subscribe" : "unsubscribe"
-        }`,
-        {
-          headers: {
-            Authorization: `bearer ${Cookies.get("token")}`,
-          },
-        }
-      )
-      .catch((error) => {
+    //cf services => axiosService
+    axiosService({
+      method: "post",
+      uri: `/user/${profileId}/${
+        currentUserFollows ? "subscribe" : "unsubscribe"
+      }`,
+      catchAction: function (error) {
         console.log(error);
-      });
+      },
+    });
   };
 
   //Banish
@@ -44,15 +39,15 @@ const ProfileButtons = ({
 
   const banish = () => {
     isBanned ? setIsBanned(false) : setIsBanned(true);
-    axios
-      .post(`/user/${profileId}/${isBanned ? "banish" : "unbanish"}`, {
-        headers: {
-          Authorization: `bearer ${Cookies.get("token")}`,
-        },
-      })
-      .catch((error) => {
+
+    //cf services => axiosService
+    axiosService({
+      method: "post",
+      uri: `/user/${profileId}/${isBanned ? "banish" : "unbanish"}`,
+      catchAction: function (error) {
         console.log(error);
-      });
+      },
+    });
   };
 
   //Change button state if props change
